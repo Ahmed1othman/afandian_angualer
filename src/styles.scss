@@ -1,0 +1,206 @@
+body{
+  overflow-x: hidden;
+  // width: 1420px;
+  // margin: auto;
+}
+.container-fluid{
+  max-width: 1440px;
+  margin: auto;
+}
+p {
+  margin: 0;
+}
+
+.ellipse {
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.one-lines {
+  -webkit-line-clamp: 1;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  white-space: normal !important;
+}
+
+.two-lines {
+  -webkit-line-clamp: 2;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  white-space: normal !important;
+}
+.three-lines {
+  -webkit-line-clamp: 3;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  white-space: normal !important;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  background-color: #f7f7f7;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #DCB87A;
+  border-radius: 4px;
+}
+
+.p-card .p-card-body {
+  padding: 10px 15px !important;
+}
+
+// loader
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff; /* White background with slight transparency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #DCB87A;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.p-accordion .p-accordion-tab .p-accordion-header .p-accordion-header-link:hover{
+  transition: all 0.3s linear;
+  color: #DCB87A !important;
+}
+
+.p-accordion .p-accordion-toggle-icon {
+  order: 2;
+  transition: all 0.3s linear;
+
+}
+
+.related_blogs_head{
+  h2{
+    text-transform: capitalize;
+  }
+}
+
+// Global heading styles
+h1, h2, h3, h4, h5, h6 {
+  text-transform: capitalize;
+}
+
+// Global button styles - sentence case for most buttons
+button,
+.btn,
+a.btn,
+input[type="submit"],
+input[type="button"],
+.p-button,
+.View_All,
+.read_more,
+.share {
+  &::first-letter {
+    text-transform: uppercase !important;
+  }
+  text-transform: lowercase !important;
+}
+
+// Special buttons with Title Case capitalization
+.whatsapp,
+.call_us {
+  text-transform: capitalize !important;  // Make first letter of each word uppercase
+}
+
+// =================================================================================
+
+// .p-galleria-thumbnail-items {
+//   display: flex;
+//   flex-wrap: wrap!important;
+// }
+// .product_details{
+//   .p-galleria-item{
+//     border: 1px solid #D0D0D0 !important;
+//     padding: 40px !important;
+//     border-radius: 7px !important;
+//     margin-bottom: 10px !important;
+//     height: 480px;
+//     position: relative;
+//   }
+//   .p-galleria .p-galleria-thumbnail-container {
+//     background: transparent !important;
+//     padding: 0 !important;
+//   }
+//   .p-galleria .p-galleria-thumbnail-container 
+//   .p-galleria-thumbnail-prev, 
+//   .p-galleria 
+//   .p-galleria-thumbnail-container 
+//   .p-galleria-thumbnail-next {
+//     display: none !important;
+//   }
+//   .image_under_contnet{
+//     width: 100px !important;
+//     height: 70px !important;
+//     /* padding: 7px !important; */
+//     // border: 2px solid #ECECEC;
+//     border-radius: 12px;
+//     margin: 5px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     img{
+//       width: 100%;
+//       max-width: 100%;
+//       height: auto;
+//       max-height: 100%;
+//       border-radius: 10px;
+//     }
+//   }
+//   .p-galleria-thumbnail-item {
+//     flex: unset !important;
+//   }
+
+// }
+
+
+// .p-galleria-thumbnail-items {
+//   transform: none !important;
+// }
+// .p-items-hidden .p-galleria-thumbnail-item {
+//   visibility: visible !important;
+// }
+
+// .p-galleria-content .p-ripple {
+//   position: absolute !important;
+// }
+
+@import './app/shared/styles/rich-text';
+
+@media only screen and (max-width: 500px) {
+  .dropdown-item.ar {
+      left: 0 !important;
+      right: auto !important;
+      text-align: right;
+  }
+
+  .dropdown-item.en {
+      right: 0 !important;
+      left: auto !important;
+      text-align: left;
+  }
+}

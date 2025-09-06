@@ -1,0 +1,110 @@
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+::ng-deep .card_blog .p-card {
+    border: 1px solid #D0D0D0;
+    border-radius: 7px;
+    max-width: 440px;
+    width: 90%;
+    margin: auto;
+    box-shadow: none;
+    text-transform: capitalize;
+    .p-card-header .blog_img{
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        width: 100%;
+        max-height: 300px;
+        max-width: 440px !important;
+        display: block;
+        margin: auto;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+        .sale{
+            background: #FF1607;
+            color: #fff;
+            border-radius: 7px;
+            padding: 5px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+    .p-card-content{
+        padding: 0;
+    }
+    
+    .date{
+        p{
+            font-size: 14px;
+            font-weight: 500;
+            color:#565656;
+            margin-bottom: 10px;
+        }
+    }
+    .title{
+        h3{
+            font-size: 20px;
+            font-weight: 600;
+            color: #171717;
+        }
+    }
+    .car_details{
+        height: 30px;
+        p{
+            color: #525252;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+    .p-card-footer {
+        padding-top: 10px;
+        .read_more{
+            width: fit-content;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            padding: 9px 20px;
+            text-decoration: none;
+            font-size: 14px;
+            background: #DCB87A;
+            color: #171717;
+            font-weight: 500;
+        }
+    }
+    
+}
+@media only screen and (max-width: 1199px) {
+    ::ng-deep .card_blog .p-card .title h3 {
+        font-size: 16px;
+    }
+    ::ng-deep  .card_blog .p-card .p-card-header .blog_img .sale {
+        font-size: 10px;
+    }
+    ::ng-deep .card_blog .p-card .title h3 {
+        font-size: 16px;
+    }
+    ::ng-deep .card_blog .p-card .car_details p {
+        font-size: 12px;
+    }
+    ::ng-deep .card_blog .p-card .p-card-footer .read_more {
+        font-size: 12px;
+    }
+    ::ng-deep .card_blog .p-card .date p {
+        font-size: 12px;
+    }
+}

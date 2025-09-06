@@ -1,0 +1,237 @@
+<app-banner-head></app-banner-head>
+
+<section class="filter mt-5 mb-3 px-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="mobile mb-3">
+                <button type="button" style=" border-radius: 6px;   background: transparent;
+                color: #171717;
+                font-size: 16px;
+                border: 1px solid #171717;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                     {{ translations['filter'] }} 
+                    <i class="fa-solid fa-filter"></i>
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ translations['filter'] }}</h1>
+                            
+                            </div>
+                            <div class="modal-body">
+                                <form (ngSubmit)="submitFilter()">
+                                    <p-accordion [multiple]="true" [activeIndex]="activeIndex">
+                                        <!-- Body Style -->
+                                        <div class="body-style mb-3 border rounded">
+                                            <p-accordionTab header="{{ translations['categories'] }}">
+                                                <div *ngFor="let cat of productFilter?.data?.categories">
+                                                    <div class="d-flex align-items-center justify-content-between py-2 mb-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <input type="checkbox" class="form-check-input" data-bs-dismiss="modal" [value]="cat.id"
+                                                                [checked]="selectedCategories.includes(cat.id)"
+                                                                (change)="updateSelectedCategories(cat.id, $event)">
+                                                            <img [src]="'https://admin.afandinacarrental.com/storage/' + cat.image"
+                                                                class="mx-2" width="auto" height="35px" />
+                                                            <span>{{ cat.name }}</span>
+                                                        </div>
+                                                        <span class="ml-auto">{{ cat.car_count }}</span>
+                                                    </div>
+                                                </div>
+                                            </p-accordionTab>
+                                        </div>
+                
+                                        <!-- Brand -->
+                                        <div class="body-style mb-3 border rounded">
+                                            <p-accordionTab header="{{ translations['brand'] }}">
+                                                <div *ngFor="let brand of productFilter?.data?.brands">
+                                                    <div class="d-flex align-items-center justify-content-between py-2 mb-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <input type="checkbox" class="form-check-input" [value]="brand.id"
+                                                            data-bs-dismiss="modal"
+                                                                [checked]="selectedBrands.includes(brand.id)"
+                                                                (change)="updateSelectedBrands(brand.id, $event)">
+                                                            <img [src]="'https://admin.afandinacarrental.com/storage/' + brand.image"
+                                                                class="mx-2" width="auto" height="35px" 
+                                                                [alt]="brand.name + ' Logo'" 
+                                                                [title]="brand.name" />
+                                                            <span>{{ brand.name }}</span>
+                                                        </div>
+                                                        <span class="ml-auto">{{ brand.car_count }}</span>
+                                                    </div>
+                                                </div>
+                                            </p-accordionTab>
+                                        </div>
+                
+                                        <!-- Color -->
+                                        <div class="body-style mb-3 border rounded">
+                                            <p-accordionTab header="{{ translations['color'] }}">
+                                                <div *ngFor="let color of productFilter?.data?.colors">
+                                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <input type="checkbox" class="form-check-input" [value]="color.id"
+                                                            data-bs-dismiss="modal"
+                                                                [checked]="selectedColors.includes(color.id)"
+                                                                (change)="updateSelectedColors(color.id, $event)">
+                                                            <span class="car_color" [ngStyle]="{
+                                                                'background-color': color.color_code,
+                                                                'border': (color.name.toLowerCase() === 'white' || color.color_code === '#fff') ? '1px solid #ccc' : 'none'
+                                                            }"></span>
+                                                            <span>{{ color.name }}</span>
+                                                        </div>
+                                                        <span class="ml-auto">{{ color.car_count }}</span>
+                                                    </div>
+                                                </div>
+                                            </p-accordionTab>
+                                        </div>
+                
+                                        <!-- Price -->
+                                        <div class="body-style mb-3 border rounded">
+                                            <p-accordionTab header="{{ translations['price'] }}">
+                                                <label>{{ translations['price'] }}</label>
+                                                <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="sliderOptions"
+                                                    (userChangeEnd)="onPriceChange()" data-bs-dismiss="modal">
+                                                </ngx-slider>
+                                            </p-accordionTab>
+                                        </div>
+                
+                                        <!-- Transmission -->
+                                        <div class="body-style mb-3 border rounded">
+                                            <p-accordionTab header="{{ translations['transmission'] }}">
+                                                <div *ngFor="let trans of productFilter?.data?.gear_types">
+                                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <input type="checkbox" class="form-check-input" [value]="trans.id"
+                                                                [checked]="selectedTransmissions.includes(trans.id)"
+                                                                data-bs-dismiss="modal"
+                                                                (change)="updateSelectedTransmissions(trans.id, $event)">
+                                                            <span class="mx-2">{{ trans.name }}</span>
+                                                        </div>
+                                                        <span class="ml-auto">{{ trans.car_count }}</span>
+                                                    </div>
+                                                </div>
+                                            </p-accordionTab>
+                                        </div>
+                                    </p-accordion>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" (click)="clearFilter()" class="w-100 submit mb-3" data-bs-dismiss="modal">{{ translations['clear_filter'] }}</button>
+                                <button type="button" class="submit" style="background: #6c757d;" data-bs-dismiss="modal">{{ translations['close'] }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-4 web">
+                <form (ngSubmit)="submitFilter()">
+                    <p-accordion [multiple]="true" [activeIndex]="activeIndex">
+                        <!-- Body Style -->
+                        <div class="body-style mb-3 border rounded">
+                            <p-accordionTab header="{{ translations['categories'] }}">
+                                <div *ngFor="let cat of productFilter?.data?.categories">
+                                    <div class="d-flex align-items-center justify-content-between py-2 mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <input type="checkbox" class="form-check-input" [value]="cat.id"
+                                                [checked]="selectedCategories.includes(cat.id)"
+                                                (change)="updateSelectedCategories(cat.id, $event)">
+                                            <img [src]="'https://admin.afandinacarrental.com/storage/' + cat.image"
+                                                class="mx-2" width="auto" height="35px" />
+                                            <span>{{ cat.name }}</span>
+                                        </div>
+                                        <span class="ml-auto">{{ cat.car_count }}</span>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </div>
+
+                        <!-- Brand -->
+                        <div class="body-style mb-3 border rounded">
+                            <p-accordionTab header="{{ translations['brand'] }}">
+                                <div *ngFor="let brand of productFilter?.data?.brands">
+                                    <div class="d-flex align-items-center justify-content-between py-2 mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <input type="checkbox" class="form-check-input" [value]="brand.id"
+                                                [checked]="selectedBrands.includes(brand.id)"
+                                                (change)="updateSelectedBrands(brand.id, $event)">
+                                            <img [src]="'https://admin.afandinacarrental.com/storage/' + brand.image"
+                                                class="mx-2" width="auto" height="35px" 
+                                                [alt]="brand.name + ' Logo'" 
+                                                [title]="brand.name" />
+                                            <span>{{ brand.name }}</span>
+                                        </div>
+                                        <span class="ml-auto">{{ brand.car_count }}</span>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </div>
+
+                        <!-- Color -->
+                        <div class="body-style mb-3 border rounded">
+                            <p-accordionTab header="{{ translations['color'] }}">
+                                <div *ngFor="let color of productFilter?.data?.colors">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <input type="checkbox" class="form-check-input" [value]="color.id"
+                                                [checked]="selectedColors.includes(color.id)"
+                                                (change)="updateSelectedColors(color.id, $event)">
+                                            <span class="car_color" [ngStyle]="{
+                                                'background-color': color.color_code,
+                                                'border': (color.name.toLowerCase() === 'white' || color.color_code === '#fff') ? '1px solid #ccc' : 'none'
+                                            }"></span>
+                                            <span>{{ color.name }}</span>
+                                        </div>
+                                        <span class="ml-auto">{{ color.car_count }}</span>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="body-style mb-3 border rounded">
+                            <p-accordionTab header="{{ translations['price'] }}">
+                                <label>{{ translations['price'] }}</label>
+                                <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="sliderOptions"
+                                    (userChangeEnd)="onPriceChange()">
+                                </ngx-slider>
+                            </p-accordionTab>
+                        </div>
+
+                        <!-- Transmission -->
+                        <div class="body-style mb-3 border rounded">
+                            <p-accordionTab header="{{ translations['transmission'] }}">
+                                <div *ngFor="let trans of productFilter?.data?.gear_types">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <input type="checkbox" class="form-check-input" [value]="trans.id"
+                                                [checked]="selectedTransmissions.includes(trans.id)"
+                                                (change)="updateSelectedTransmissions(trans.id, $event)">
+                                            <span class="mx-2">{{ trans.name }}</span>
+                                        </div>
+                                        <span class="ml-auto">{{ trans.car_count }}</span>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </div>
+                    </p-accordion>
+                    <button type="button" (click)="clearFilter()" class="w-100 submit mb-3">{{ translations['clear_filter'] }}</button>
+                </form>
+
+
+            </div>
+
+            <div class="col-xl-9 col-md-8">
+                <div class="row">
+                    <div class="col-xl-4  col-lg-6 col-md-12 col-sm-6 col-12 p-0 mb-3" *ngFor="let car of filterData">
+                        <app-card [carData]="car"></app-card>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- زر العودة إلى أعلى الصفحة -->
+<app-scroll-to-top></app-scroll-to-top>

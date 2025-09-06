@@ -1,0 +1,71 @@
+<div class=" search_bar " [ngClass]="{
+    'search_bar_ar': this.currentLang === 'ar',
+    'search_bar_en': this.currentLang !== 'ar'
+  }">
+    <form>
+        <div class="input-group" [ngClass]="{
+            'ar': this.currentLang === 'ar',
+            'en': this.currentLang !== 'ar'
+          }">
+          <input 
+            type="search" 
+            class="form-control" 
+            placeholder="{{ translations['search'] }}" 
+            (focus)="onFocus()" 
+            (blur)="onBlur()"
+            (input)="Search($event)"/>
+            <button type="submit" class="input-group-text" [routerLink]="['/', currentLang, 'search-your-car']" [attr.aria-label]="translations['search']">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </form>
+    <ul  class="d-block"  *ngIf="showDropdown"> 
+        <ng-container *ngIf="searchResults.brands.length > 0 || searchResults.categories.length > 0 || searchResults.cars.length > 0; else noResults">
+            
+            <!-- Brands Section -->
+            <h2 class="mb-1" *ngIf="searchResults.brands.length > 0">{{ translations['brands'] }}</h2>
+            <li *ngFor="let brand of searchResults.brands">
+                <a class="d-flex align-items-center" [routerLink]="['/', currentLang, 'brand', brand.slug]" [title]="'Browse ' + brand.name + ' cars'">
+                    <img [alt]="brand.name" 
+                         [src]="'https://admin.afandinacarrental.com/storage/' + brand.logo_path" 
+                         width="auto" height="30px" 
+                         class="d-block m-auto"
+                         [title]="brand.name" />
+                    <div>
+                        <span>{{brand.name}}</span>
+                    </div>
+                </a>
+            </li>
+            
+            <!-- Categories Section -->
+            <h2 class="mb-1" *ngIf="searchResults.categories.length > 0" >{{ translations['categories'] }}</h2>
+            <li *ngFor="let category of searchResults.categories">
+                <a class="d-flex align-items-center" [routerLink]="['/', currentLang, 'category', category.slug]" [title]="'Browse ' + category.name + ' cars'">
+                    <img [alt]="category.name" 
+                         [src]="'https://admin.afandinacarrental.com/storage/' + category.image_path" 
+                         width="auto" height="30px" 
+                         class="d-block m-auto"
+                         [title]="category.name" />
+                    <div>
+                        <span>{{category.name}}</span>
+                        <p>{{category.cars_count}}</p>
+                    </div>
+                </a>
+            </li>
+            <!-- Cars Section -->
+            <h2 class="mb-1" *ngIf="searchResults.cars.length > 0">{{ translations['cars'] }}</h2>
+            <li *ngFor="let car of searchResults.cars">
+                <a [routerLink]="['/', currentLang, 'product', car.slug]" [title]="'View details of ' + car.name" title="car.name">
+                    <img alt="{{car.alt}}" [src]="'https://admin.afandinacarrental.com/storage/' + car.default_image_path" width="auto" height="30px" class="d-block m-auto" />
+                    <span>{{car.name}}</span>
+                </a>
+            </li>
+        </ng-container>
+        <!-- No Results Found Message -->
+        <ng-template #noResults>
+            <li class="text-center">
+                <span>{{ translations['no_results'] }}</span>
+            </li>
+        </ng-template>
+    </ul>
+</div>

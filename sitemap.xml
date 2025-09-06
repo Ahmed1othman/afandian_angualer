@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+    <!-- Home pages -->
+    <url>
+        <loc>https://afandinacarrental.com/en/home</loc>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://afandinacarrental.com/ar/home"/>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Product listing pages -->
+    <url>
+        <loc>https://afandinacarrental.com/en/product/brands</loc>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://afandinacarrental.com/ar/product/brands"/>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://afandinacarrental.com/en/product/categories</loc>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://afandinacarrental.com/ar/product/categories"/>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://afandinacarrental.com/en/product/locations</loc>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://afandinacarrental.com/ar/product/locations"/>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Contact page -->
+    <url>
+        <loc>https://afandinacarrental.com/en/contact-us</loc>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://afandinacarrental.com/ar/contact-us"/>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+</urlset>

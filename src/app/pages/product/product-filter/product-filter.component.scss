@@ -1,0 +1,134 @@
+::ng-deep .p-accordion{
+    .p-accordion-tab{
+        background: transparent;
+        border-radius: 0;
+        border: 0;
+        .p-accordion-header .p-accordion-header-link{
+            background: transparent;
+            border: 0;
+            text-decoration: none;
+            color: #171717;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .p-accordion-content {
+        border: 0px;
+        background: #ffffff;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        .car_color{
+            width: 20px;
+            height: 20px;
+            background: red;
+            display: inline-block;
+            margin: 0 10px;
+            border-radius: 50%;
+        }
+    }
+    .p-accordion-toggle-icon {
+        order: 2;
+    }
+
+    .p-accordion-header-text{
+        
+        order: 1;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .p-accordion-content{
+        font-size: 16px;
+        font-weight: 400;
+        color: #646A69;
+        span:nth-child(2){
+
+            font-size: 12px;
+        }
+    }
+}
+
+.body-style img{
+    width: auto;
+    max-width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.transmission h3{
+    font-size: 16px;
+    font-weight: 500;
+    color: #2F2F2F;
+    margin-bottom: 0;
+}
+
+::ng-deep .ngx-slider{
+
+    .ngx-slider-selection,
+    .ngx-slider-pointer{
+        background: #DCB87A !important;
+    }
+
+    .ngx-slider-pointer.ngx-slider-active:after{
+        background: #fff !important;
+    }
+    .ngx-slider-pointer:after {
+        top: 9px !important;
+        left: 8px !important;
+    }
+    .ngx-slider-pointer {
+        width: 25px !important;
+        height: 25px !important;
+        top: -12px !important;
+    }
+    .ngx-slider-bubble{
+        font-size: 12px !important;
+    }
+}
+
+.submit{
+    background: #DCB87A;
+    color: #171717;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 0;
+    padding: 10px 20px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid #DCB87A61;
+    box-shadow: none;
+    margin: 0;
+}
+
+.form-check-input:checked {
+    background-color: #171717;
+    border-color: #171717;
+}
+
+.mobile{
+    display: none;
+}
+.web{
+    display: block;
+}
+
+@media only screen and (max-width: 1199px) {
+
+    .mobile{
+        display: block;
+        .submit{
+            width: fit-content !important;
+            margin-bottom: 0 !important;
+        }
+    }
+    .web{
+        display: none;
+    }
+}
+

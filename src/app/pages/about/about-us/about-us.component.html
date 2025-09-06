@@ -1,0 +1,49 @@
+<app-banner-head [title]="aboutUsData?.data?.about_us_data?.about_main_header_title" [desc]="aboutUsData?.data?.about_us_data?.about_main_header_paragraph"></app-banner-head>
+<section class="about_us px-3" *ngIf="aboutUsData">
+    <div class="container-fluid">
+        <div class="row my-5">
+            <div class="col-md-6">
+                <div class="img mb-3">
+                    <img [src]="aboutUsData.data.about_us_data.why_choose_image_path" width="100%" height="auto" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="why_choose_us">
+                    <span class="">{{aboutUsData.data.about_us_data.about_our_agency_title}}</span>
+                    <h2 class="my-3">{{aboutUsData.data.about_us_data.why_choose_title}}</h2>
+                    <div class="content w-75">
+                        <p>
+                            {{aboutUsData.data.about_us_data.why_choose_content}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="our_Vision my-5">
+            <div class="title w-75 m-auto">
+                <h2>{{aboutUsData.data.about_us_data.our_vision_title}}</h2>
+                <p [innerHTML]="aboutUsData.data.about_us_data.our_vision_content">
+                    <!-- {{aboutUsData.data.about_us_data.our_vision_content}} -->
+                </p>
+            </div>
+        </div>
+        <div class="our_mission my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="title">
+                        <h2>{{aboutUsData.data.about_us_data.our_mission_title}}</h2>
+                        <p [innerHTML]="aboutUsData.data.about_us_data.our_mission_content">
+                            <!-- {{aboutUsData.data.about_us_data.our_mission_content}} -->
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img mb-3">
+                        <img [src]="aboutUsData.data.about_us_data.why_choose_image_path" width="auto" height="100%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  

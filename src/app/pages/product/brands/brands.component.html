@@ -1,0 +1,68 @@
+<div>
+    <app-banner-head [title]="brandDetails.brands.section_title" [desc]="brandDetails.brands.description"></app-banner-head>
+</div>
+<section class="cars_brand py-4" *ngIf=" brandsSection">
+    <div class="container-fluid">
+        <div class="head d-flex align-items-center justify-content-between">
+            <h2>{{brandsSection.section_title}}</h2>
+            <div class="buttons">
+                <button class="custom-prev-arrow" (click)="carsBrandSwiper.swiperRef.slidePrev()">
+                    <i class="fa-solid "
+                        [ngClass]="{ 'fa-chevron-right': this.currentLang === 'ar', 'fa-chevron-left': this.currentLang !== 'ar' }"></i>
+                </button>
+                <button class="custom-next-arrow" (click)="carsBrandSwiper.swiperRef.slideNext()">
+                    <i class="fa-solid "
+                        [ngClass]="{ 'fa-chevron-left': this.currentLang === 'ar', 'fa-chevron-right': this.currentLang !== 'ar' }"></i>
+                </button>
+            </div>
+        </div>
+
+        <swiper class="mx-2" #carsBrandSwiper [slidesPerView]="7" [spaceBetween]="0" [slidesPerView]="7.5"
+            [navigation]="false"  class="mySwiper"
+            [breakpoints]="swiperBrand.breakpoints">
+            <ng-template swiperSlide *ngFor="let brand of brandsSection.brands">
+                <div class="card_cartype text-center card p-2" [routerLink]="['/', currentLang ,'brand' , brand.slug ]" 
+                >
+                    <div class="d-flex align-items-center justify-content-center" style="height: 110px;">
+                        <img [src]="'https://admin.afandinacarrental.com/storage/'+brand.image"
+                            class="d-block m-auto" width="auto" height="auto" [alt]=" brand.name" />
+                    </div>
+
+                    <h3>{{brand.name}}</h3>
+                    <p>{{brand.car_count}}</p>
+                </div>
+            </ng-template>
+        </swiper>
+    </div>
+</section>
+<section class="blog_list pt-4 pb-4 mx-4">
+    <div class="container-fluid">
+        <div class="row" *ngIf="brandDetails.cars && brandDetails.cars.length > 0">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3 p-0" *ngFor="let car of brandDetails.cars">
+                <app-card [carData]="car"></app-card>
+            </div>
+        </div>
+        <div class="row" *ngIf="!brandDetails.cars || brandDetails.cars.length === 0">
+            <div class="col-12 text-center py-5">
+                <div class="no-cars-message">
+                    <i class="fa-solid fa-car-rear mb-3" style="font-size: 48px; color: #ccc;"></i>
+                    <h3 class="text-muted">{{ translations['no_cars'] }}</h3>
+                    <p class="text-muted">{{ translations['check_back_later'] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="article-section py-5" *ngIf="brandDetails.brands.article">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="article-wrapper">
+                    <div class="article-content">
+                        <div class="content-wrapper rich-text-content" [innerHTML]="sanitizeHtml(brandDetails.brands.article)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

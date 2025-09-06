@@ -1,0 +1,10 @@
+/* TEAM */
+Name: Afandina Car Rental Team
+Site: https://www.afandinacarrental.com
+Location: [Your Location]
+
+/* SITE */
+Last update: 2024-12-30
+Standards: HTML5, CSS3, JavaScript
+Components: Angular, Bootstrap
+Language: English

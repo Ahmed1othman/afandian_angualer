@@ -1,0 +1,206 @@
+<section class="product_show">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 ">
+                <div class=" product_details mt-3">
+                    
+                        <p-galleria [value]="images" [showItemNavigators]="true"  [responsiveOptions]="responsiveOptions"
+                            [circular]="true" [numVisible]="6" [containerStyle]="{ 'width': '100%' }">
+                            <ng-template pTemplate="item" let-item>
+                                <p-image [preview]="true" 
+                                        [src]="'https://admin.afandinacarrental.com/storage/' + item.file_path" 
+                                        class="full-width-image"
+                                        [alt]="productDetails?.data?.name + ' - ' + productDetails?.data?.category"
+                                        [title]="productDetails?.data?.name + ' - ' + productDetails?.data?.category">
+                                </p-image>
+                            </ng-template>
+                            <ng-template pTemplate="thumbnail" let-item>
+                                <div class="grid grid-nogutter">
+                                    <img [src]="'https://admin.afandinacarrental.com/storage/' + item.file_path"
+                                        style="display: block;height: auto;max-height:70px;object-fit: cover; width: 120px;border-radius: 7px;"
+                                        [alt]="productDetails?.data?.name + ' thumbnail'"
+                                        [title]="productDetails?.data?.name + ' thumbnail'" />
+                                </div>
+                            </ng-template>
+                        </p-galleria>
+                </div>
+            </div>
+            <div class="col-lg-5  mt-3">
+                <div class="card_details mb-3">
+                    <p-card [style]="{ width: '100%' }" class="card_product">
+                        <div class="d-flex align-items-center title mb-3">
+                            <h3 class="m-0">{{productDetails?.data?.name}}</h3>
+                            <span class="mx-2">4,5 <i class="fa-solid fa-star"></i></span>
+                        </div>
+                        <p class="small_description three-lines ellipse mb-3">{{productDetails?.data?.description}}</p>
+                        <div class="d-flex align-items-center  car_details mb-2">
+                            <div>
+                                <i class="fa-solid fa-user"></i>
+                                <span class="mx-1">{{productDetails?.data?.passenger_capacity}} </span>
+                            </div>
+                            <div class="mx-3">
+                                <img src="../../../../assets/images/icon/Window.svg" 
+                                     class="mx-1"
+                                     [alt]="'Door Count Icon'"
+                                     [title]="'Door Count: ' + productDetails?.data?.door_count" />
+                                <span class="mx-1">{{productDetails?.data?.door_count}} </span>
+                            </div>
+                            <div>
+                                <img src="../../../../assets/images/icon/car.svg" 
+                                     class="mx-1"
+                                     [alt]="'Car Category Icon'"
+                                     [title]="'Category: ' + productDetails?.data?.category" />
+                                <span class="mx-1">{{productDetails?.data?.category}}</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="carOverview">
+                            <h3> {{ translations['car_over_view'] }}</h3>
+                            <div class="d-flex align-items-center flex-wrap">
+                                 
+                                    <div class="carOverviewCard">
+                                        <h4>{{translations['category']}}</h4>
+                                        <p><a [routerLink]="['/', currentLang, 'category', productDetails?.data?.category_slug]" class="car-detail-link" [title]="'Browse ' + productDetails?.data?.category + ' cars'">{{ productDetails?.data?.category || '-' }}</a></p>
+                                    </div>
+                                 
+                                    <div class="carOverviewCard">
+                                        <h4>{{translations['brand']}}</h4>
+                                        <p><a [routerLink]="['/', currentLang, 'brand', productDetails?.data?.brand_slug]" class="car-detail-link" [title]="'Browse ' + productDetails?.data?.brand + ' cars'">{{productDetails?.data?.brand || '-'}}</a></p>
+                                    </div>
+                                 
+                                    <div class="carOverviewCard">
+                                        <h4>{{translations['model']}}</h4>
+                                        <p>{{productDetails?.data?.car_model || '-'}}</p>
+                                    </div>
+                                 
+                                    <div class="carOverviewCard">
+                                        <h4>{{translations['year']}}</h4>
+                                        <p>{{productDetails?.data?.year || '-'}}</p>
+                                    </div>
+                                 
+                                    <div class="carOverviewCard">
+                                        <h4>{{translations['color']}}</h4>
+                                        <span [style.background-color]="productDetails?.data?.color?.code"></span>
+                                    </div>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="price mb-2">
+                            <h3> {{ translations['Pricing'] }}</h3>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="day">
+                                        <p>
+                                            {{productDetails?.data?.daily_discount_price}}
+                                            <span
+                                                class="old_price">{{productDetails?.data?.daily_main_price}}</span>
+                                            <span>AED\{{ translations['per_day'] }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="month">
+                                        <p>
+                                            {{productDetails?.data?.monthly_discount_price}}
+                                            <span
+                                                class="old_price">{{productDetails?.data?.monthly_main_price}}</span>
+                                            <span>AED\{{ translations['per_month'] }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message row mb-2">
+                            <div class="col-6" *ngIf="productDetails?.data?.free_delivery == '1'">
+                                <div class="d-flex align-items-center ">
+                                    <img src="../../../../assets/images/icon/check.svg"
+                                        [alt]="'Free Delivery Icon'"
+                                        [title]="translations['free_delivery']" />
+                                    <p class="mx-1">{{ translations['free_delivery'] }}</p>
+                                </div>
+                            </div>
+                            <div class="col-6" *ngIf="productDetails?.data?.insurance_included == '1'">
+                                <div class="d-flex align-items-center ">
+                                    <img src="../../../../assets/images/icon/check.svg"
+                                    [alt]="'Insurance Included Icon'"
+                                    [title]="translations['insurance_included']"/>
+                                    <p class="mx-1">{{ translations['insurance_included'] }} </p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center mb-1"
+                                    *ngIf="productDetails?.data?.insurance_included == '1'">
+                                    <i class="fa-solid fa-bitcoin-sign"></i>
+                                    <p class="mx-1">{{ translations['crypto_payment_accepted'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template pTemplate="footer">
+                            <div class="row">
+                                <div class="col-5 p-1">
+                                    <a [href]="whatsappUrl"  class="whatsapp" [title]="translations['whatsapp']">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                        <span class="mx-1">{{ translations['whatsapp'] }}</span>
+                                    </a>
+                                </div>
+                                <div class="col-5 p-1">
+                                    <a [href]="'tel:' + contactData.phone" class="call_us" [title]="translations['call_us']">
+                                        <i class="fa-solid fa-phone"></i>
+                                        <span class="mx-1">{{ translations['call_us'] }}</span>
+                                    </a>
+                                </div>
+                                <div class="col-2 p-1">
+                                    <a [href]="'mailto:' + contactData.email" class="share" [title]="translations['send_to_email']">
+                                        <i class="fa-solid fa-envelope" ></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+            <div class="col-lg-7  order_description" *ngIf="productDetails?.data?.long_description">
+                <div class="product_details border-0">
+                    <div class="description rich-text-content mb-3">
+                        <!-- <h2 style="text-transform: capitalize;">{{ translations['car_description'] }} </h2> -->
+                        <div class="description rich-text-content" [innerHTML]="productDetails?.data?.long_description"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-5  careatures order_carOverview">
+                <div class="product_details border-0" *ngIf="productDetails?.data?.car_features.length > 0">
+
+                    <div class="carOverview">
+                        <h2>{{ translations['car_features'] }} </h2>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-4 p-1"
+                                *ngFor="let feature of productDetails?.data?.car_features">
+                                <div class="carOverviewCard">
+                                    <img src="../../../../assets/images/icon/check.svg" class="mb-2" width="25px" [alt]="'Car Features Icon'" [title]="translations['car_features']"/>
+                                    <p>{{ feature.name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="related_blogs p-3 px-0" *ngIf="productDetails?.data?.related_cars">
+    <div class="container-fluid">
+        <div class="related_blogs_head  mb-3">
+            <h2>{{ translations['related_cars'] }} </h2>
+        </div>
+
+        <swiper class="mx-2" #onlyOnAfandina [slidesPerView]="4.5" [spaceBetween]="0" [navigation]="false"
+             [breakpoints]="swiperCard.breakpoints" class="mySwiper">
+            <ng-template swiperSlide *ngFor="let car of productDetails?.data?.related_cars">
+                <app-card [carData]="car"></app-card>
+            </ng-template>
+        </swiper>
+
+    </div>
+</section>

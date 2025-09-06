@@ -1,0 +1,11 @@
+<div class="not-found-container">
+    <div class="content">
+        <div class="error-code">404</div>
+        <h1>{{ translations['page_not_found'] }}</h1>
+        <p>{{ translations['page_not_found_message'] }}</p>
+        <a [routerLink]="['/', currentLang, 'home']" class="home-link">
+            {{ translations['back_to_home'] }}
+            <i class="fas fa-home ms-2 p-1"></i>
+        </a>
+    </div>
+</div>

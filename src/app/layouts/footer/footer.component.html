@@ -1,0 +1,156 @@
+<footer class="dark-footer">
+  <div class="container">
+
+<!-- Second Row - Quick Links, Support and Logo -->
+<div class="footer-row compact">
+
+<!-- Brand/Logo and Social Media -->
+<div class="footer-brand">
+  <a [routerLink]="['/', currentLang]" class="footer-logo" [title]="translations['home_page']">
+    <img [src]="light_logo" width="160" height="auto" alt="Afandina Car Rental Logo" [title]="translations['home_page']" />
+  </a>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer nofollow" [title]="translations['facebook']" class="social-icon" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer nofollow" [title]="translations['twitter']" class="social-icon" aria-label="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer nofollow" [title]="translations['instagram']" class="social-icon" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer nofollow" [title]="translations['linkedin']" class="social-icon" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer nofollow" [title]="translations['youtube']" class="social-icon" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer nofollow" [title]="translations['tiktok']" class="social-icon" aria-label="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+
+  </div>
+</div>
+
+  <!-- Quick Links -->
+  <div class="footer-section links-section">
+    <h6 class="section-title"><i class="fa-solid fa-link me-2"></i>{{ translations['quick_links'] }}</h6>
+    <ul class="link-list">
+      <li>
+        <a [routerLink]="['/', currentLang, 'about-us']" [title]="translations['about_us']" aria-label="About Us">
+          <i class="fa-solid fa-circle-info me-2"></i>{{ translations['about_us'] }}
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/', currentLang, 'blogs']" [title]="translations['blog']" aria-label="Blog">
+          <i class="fa-solid fa-blog me-2"></i>{{ translations['blog'] }}
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/', currentLang, 'contact-us']" [title]="translations['contact_us']" aria-label="Contact Us">
+          <i class="fa-solid fa-envelope me-2"></i>{{ translations['contact_us'] }}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Support Section -->
+  <div class="footer-section support-section">
+    <h6 class="section-title"><i class="fa-solid fa-headset me-2"></i>{{ translations['support'] }}</h6>
+    <ul class="support-list">
+      <li>
+        <a href="tel:{{footerData?.data?.contact_data?.phone}}" class="support-link">
+          <i class="fa-solid fa-phone"></i>
+          <span>{{footerData?.data?.contact_data?.phone}}</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://wa.me/{{footerData?.data?.contact_data?.alternative_phone}}" target="_blank" rel="noopener noreferrer" class="support-link">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>{{footerData?.data?.contact_data?.alternative_phone}}</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:{{footerData?.data?.contact_data?.email}}" class="support-link">
+          <i class="fa-solid fa-envelope"></i>
+          <span>{{footerData?.data?.contact_data?.email}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  
+</div>
+
+    <!-- Main footer content -->
+    <div class="footer-content">
+      <!-- First Row - Full width sections -->
+      <div class="footer-row full-width">
+        <!-- Brands Section -->
+        <div class="footer-section brands-section">
+          <h6 class="section-title"><i class="fa-solid fa-car-side me-2"></i>{{brandsSection?.section_title}}</h6>
+          <div class="tag-cloud">
+            <a *ngFor="let brand of brandsSection?.brands" 
+              [routerLink]="['/', currentLang, 'brand', brand.slug]" 
+              [title]="'Browse ' + brand.name + ' cars'"
+              class="tag-item"
+              [attr.aria-label]="'View ' + brand.name + ' cars'">
+              {{brand.section_title || brand.name}}
+            </a>
+          </div>
+        </div>
+
+        <!-- Categories Section -->
+        <div class="footer-section categories-section">
+          <h6 class="section-title"><i class="fa-solid fa-layer-group me-2"></i>{{categoriesSection?.section_title || translations['categories']}}</h6>
+          <div class="tag-cloud">
+            <a *ngFor="let category of categoriesSection?.categories" 
+              [routerLink]="['/', currentLang, 'category', category.slug]" 
+              [title]="category.name"
+              class="tag-item"
+              [attr.aria-label]="'View ' + category.name + ' categories'">
+              {{category.section_title||category.name}}
+            </a>
+          </div>
+        </div>
+
+        <!-- Locations Section -->
+        <div class="footer-section locations-section">
+          <h6 class="section-title"><i class="fa-solid fa-location-dot me-2"></i>{{translations['locations']}}</h6>
+          <div class="tag-cloud">
+            <a *ngFor="let location of locationsSection?.locations" 
+              [routerLink]="['/', currentLang, 'location', location.slug]" 
+              [title]="location.name"
+              class="tag-item"
+              [attr.aria-label]="'View ' + location.name + ' locations'">
+              {{location.section_title || location.name}}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+    
+    <!-- Bottom bar with payment and copyright -->
+    <div class="footer-bottom">
+      <!-- Payment Methods -->
+      <div class="payment-section">
+        <h6 class="payment-title">{{ translations['available_payment_methods'] }}</h6>
+        <div class="payment-icons">
+          <img src="../../../../assets/images/icon/1.webp" [alt]="translations['available_payment_methods']">
+          <img src="../../../../assets/images/icon/2.webp" [alt]="translations['available_payment_methods']">
+          <img src="../../../../assets/images/icon/3.webp" [alt]="translations['available_payment_methods']">
+          <img src="../../../../assets/images/icon/4.webp" [alt]="translations['available_payment_methods']">
+          <img src="../../../../assets/images/icon/5.webp" [alt]="translations['available_payment_methods']">
+          <img src="../../../../assets/images/icon/6.webp" [alt]="translations['available_payment_methods']">
+        </div>
+      </div>
+      
+      <!-- Copyright -->
+      <div class="copyright">
+        &copy; 2025 Afandina Car Rental. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,456 @@
+<main class="home">
+
+    <section class="hero_section" *ngIf="headerSection">
+        <div class="social-icons" *ngIf="headerSection.social_media_links">
+            <a [routerLink]="headerSection.social_media_links.facebook" target="_blank" 
+                [title]="'Follow us on Facebook'">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a [routerLink]="headerSection.social_media_links.twitter" target="_blank" 
+                [title]="'Follow us on Twitter'">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a [routerLink]="headerSection.social_media_links.instagram" target="_blank" 
+                [title]="'Follow us on Instagram'">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a [routerLink]="headerSection.social_media_links.snapchat" target="_blank" 
+                [title]="'Follow us on Snapchat'">
+                <i class="fa-brands fa-snapchat"></i>
+            </a>
+        </div>
+        <div class="hero-media-container">
+            <video *ngIf="headerSection.hero_media_type === 'video'"
+                [src]="headerSection.hero_header_video_path" 
+                autoplay
+                [muted]="true" 
+                loop 
+                playsinline
+                preload="metadata"
+                class="hero-video">
+            </video>
+
+            <picture *ngIf="headerSection.hero_media_type === 'image'">
+                <source [srcset]="headerSection.hero_header_image_path" type="image/webp" media="(min-width: 768px)">
+                <source [srcset]="headerSection.hero_header_image_path" type="image/jpeg" media="(min-width: 768px)">
+                <source [srcset]="headerSection.hero_header_image_path" type="image/webp">
+                <source [srcset]="headerSection.hero_header_image_path" type="image/jpeg">
+                <img [src]="headerSection.hero_header_image_path"
+                    [alt]="headerSection.hero_header_title || 'Afandina Car Rental Hero Image'"
+                    [title]="headerSection.hero_header_title || 'Afandina Car Rental Hero Image'"
+                    class="hero-image"
+                    loading="eager"
+                    fetchpriority="high">
+            </picture>
+        </div>
+        <!-- <app-navbar [brands]="brandsSection.brands" [categoriesSection]="categoriesSection.categories" ></app-navbar> -->
+    </section>
+
+    <section class="cars_type py-4 pt-3" *ngIf="categoriesSection">
+        <div class="container-fluid">
+            <div class="head d-flex align-items-center justify-content-between">
+                <h2>{{categoriesSection.section_title}}</h2>
+                <div class="buttons">
+                    <button class="custom-prev-arrow" (click)="carsTypeSwiper.swiperRef.slidePrev()" [attr.aria-label]="translations['previous']">
+                        <i class="fa-solid "
+                            [ngClass]="{ 'fa-chevron-right': this.currentLang === 'ar', 'fa-chevron-left': this.currentLang !== 'ar' }"></i>
+                    </button>
+                    <button class="custom-next-arrow" (click)="carsTypeSwiper.swiperRef.slideNext()" [attr.aria-label]="translations['next']">
+                        <i class="fa-solid "
+                            [ngClass]="{ 'fa-chevron-left': this.currentLang === 'ar', 'fa-chevron-right': this.currentLang !== 'ar' }"></i>
+                    </button>
+                </div>
+            </div>
+
+            <swiper  class="mx-2" #carsTypeSwiper [slidesPerView]="7" [slidesPerView]="7.5" [spaceBetween]="0"
+                [navigation]="false"  class="mySwiper"
+                [breakpoints]="swiperConfig.breakpoints">
+                <ng-template swiperSlide *ngFor="let category of categoriesSection.categories">
+                    <div class="card_cartype text-center" [routerLink]="['/', currentLang,'category' ,category.slug]"
+                        [title]="'Browse ' + category.name + ' Cars'">
+                        <div class="bg_img mb-2">
+                            <img [src]="'https://admin.afandinacarrental.com/storage/'+category.image"
+                                class="category-image d-block m-auto position-absolute top-0 start-50 translate-middle" width="150px"
+                                height="88" style="object-fit: contain;"  [alt]="'Car Category - ' + category.name" 
+                                [title]="category.name" 
+                                loading="lazy"
+                                />
+                        </div>
+                        <h3>{{category.name}}</h3>
+                        <p>{{category.car_count}}</p>
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
+    </section>
+
+    <section class="cars_brand py-4" *ngIf=" brandsSection">
+        <div class="container-fluid">
+            <div class="head d-flex align-items-center justify-content-between">
+                <h2>{{brandsSection.section_title}}</h2>
+                <div class="buttons">
+                    <button class="custom-prev-arrow" (click)="carsBrandSwiper.swiperRef.slidePrev()" [attr.aria-label]="translations['previous']">
+                        <i class="fa-solid "
+                            [ngClass]="{ 'fa-chevron-right': this.currentLang === 'ar', 'fa-chevron-left': this.currentLang !== 'ar' }"></i>
+                    </button>
+                    <button class="custom-next-arrow" (click)="carsBrandSwiper.swiperRef.slideNext()" [attr.aria-label]="translations['next']">
+                        <i class="fa-solid "
+                            [ngClass]="{ 'fa-chevron-left': this.currentLang === 'ar', 'fa-chevron-right': this.currentLang !== 'ar' }"></i>
+                    </button>
+                </div>
+            </div>
+
+            <swiper  class="mx-2" #carsBrandSwiper [slidesPerView]="7" [spaceBetween]="0" [slidesPerView]="7.5"
+                [navigation]="false"   
+                class="mySwiper"
+                [breakpoints]="swiperBrand.breakpoints">
+                <ng-template swiperSlide *ngFor="let brand of brandsSection.brands">
+                    <div class="card_cartype text-center card p-2" [routerLink]="['/', currentLang ,'brand' , brand.slug ]"
+                        [title]="'Browse ' + brand.name + ' Cars'">
+                        <div class="d-flex align-items-center justify-content-center" style="height: 110px;">
+                            <img [src]="'https://admin.afandinacarrental.com/storage/'+brand.image"
+                                class="d-block m-auto" width="100px" height="75px" 
+                                [alt]="'Car Brand - ' + brand.name" 
+                                [title]="'Car Brand - ' + brand.name" loading="lazy"/>
+                        </div>
+
+                        <h3>{{brand.name}}</h3>
+                        <p>{{brand.car_count}}</p>
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
+    </section>
+
+    <section class="car_only py-4" *ngIf="specialOffersSection">
+        <div class="container-fluid">
+            <div class="head">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h2>{{specialOffersSection.special_offers_title}}</h2>
+                    <div class="buttons">
+                        <button class="custom-prev-arrow" (click)="carsSpecialOffer.swiperRef.slidePrev()" [attr.aria-label]="translations['previous']">
+                            <i class="fa-solid "
+                                [ngClass]="{ 'fa-chevron-right': this.currentLang === 'ar', 'fa-chevron-left': this.currentLang !== 'ar' }"></i>
+                        </button>
+                        <button class="custom-next-arrow" (click)="carsSpecialOffer.swiperRef.slideNext()" [attr.aria-label]="translations['next']">
+                            <i class="fa-solid "
+                                [ngClass]="{ 'fa-chevron-left': this.currentLang === 'ar', 'fa-chevron-right': this.currentLang !== 'ar' }"></i>
+                        </button>
+                    </div>
+                </div>
+                <p>
+                    {{specialOffersSection.special_offers_section_paragraph}}
+                </p>
+            </div>
+            <swiper 
+                [slidesPerView]="4.5"
+                [spaceBetween]="0"
+                [navigation]="false"
+                [breakpoints]="swiperCard.breakpoints"
+                [autoplay]="false"
+                class="mx-2 mySwiper"
+                #carsSpecialOffer>
+                <ng-template swiperSlide *ngFor="let car of specialOffersSection.special_offers">
+                    <app-card [carData]="car"></app-card>
+                </ng-template>
+            </swiper>
+            <!-- <a routerLink="" class="View_All">{{ translations['view_all'] }}</a -->
+
+
+        </div>
+    </section>
+
+    <section *ngIf="advertisements">
+        <div class="container-fluid">
+            <section class="banner" *ngFor="let ad of advertisements.advertisements">
+                <ng-container *ngIf="ad.position_key == 'home_first'">
+                    <img [src]="'https://admin.afandinacarrental.com/storage/' + ad.web_image"
+                        class="d-none d-lg-block py-3" width="100%" height="100%" loading="lazy" 
+                        [alt]="ad.title || 'Afandina Car Rental Advertisement'" 
+                        [title]="ad.title || 'Afandina Car Rental Advertisement'">
+                    <img [src]="'https://admin.afandinacarrental.com/storage/' + ad.mobile_image"
+                        class="d-block d-lg-none " width="100%" height="100%" loading="lazy" 
+                        [alt]="ad.title || 'Afandina Car Rental Mobile Advertisement'" 
+                        [title]="ad.title || 'Afandina Car Rental Mobile Advertisement'" />
+                </ng-container>
+            </section>
+        </div>
+
+    </section>
+
+    <section class="car_only py-4" *ngIf="onlyOnAfandinaSection">
+        <div class="container-fluid">
+            <div class="head">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h2>{{onlyOnAfandinaSection.car_only_section_title}}</h2>
+                    <div class="buttons">
+                        <button class="custom-prev-arrow" (click)="onlyOnAfandina.swiperRef.slidePrev()" [attr.aria-label]="translations['previous']">
+                            <i class="fa-solid "
+                                [ngClass]="{ 'fa-chevron-right': this.currentLang === 'ar', 'fa-chevron-left': this.currentLang !== 'ar' }"></i>
+                        </button>
+                        <button class="custom-next-arrow" (click)="onlyOnAfandina.swiperRef.slideNext()" [attr.aria-label]="translations['next']">
+                            <i class="fa-solid "
+                                [ngClass]="{ 'fa-chevron-left': this.currentLang === 'ar', 'fa-chevron-right': this.currentLang !== 'ar' }"></i>
+                        </button>
+                    </div>
+                </div>
+                <p>
+                    {{onlyOnAfandinaSection.car_only_section_paragraph}}
+                </p>
+            </div>
+            <swiper  [autoplay]="false" class="mx-2" #onlyOnAfandina [slidesPerView]="4.5" [spaceBetween]="0"
+                [navigation]="false"  [breakpoints]="swiperCard.breakpoints"
+                class="mySwiper">
+                <ng-template swiperSlide *ngFor="let car of onlyOnAfandinaSection.only_on_afandina">
+                    <app-card [carData]="car"></app-card>
+                </ng-template>
+            </swiper>
+            <!-- <a routerLink="" class="View_All">{{ translations['view_all'] }}</a -->
+
+
+        </div>
+    </section>
+    <section *ngIf="advertisements">
+        <div class="container-fluid">
+            <section class="banner" *ngFor="let ad of advertisements.advertisements">
+                <ng-container *ngIf="ad.position_key == 'home_second'">
+                    <img [src]="'https://admin.afandinacarrental.com/storage/' + ad.web_image"
+                        class="d-none d-lg-block py-3" width="100%" height="100%" loading="lazy" 
+                        [alt]="ad.title || 'Afandina Car Rental Advertisement'" 
+                        [title]="ad.title || 'Afandina Car Rental Advertisement'">
+                    <img [src]="'https://admin.afandinacarrental.com/storage/' + ad.mobile_image"
+                        class="d-block d-lg-none"  width="100%" height="100%" loading="lazy" 
+                        [alt]="ad.title || 'Afandina Car Rental Mobile Advertisement'" 
+                        [title]="ad.title || 'Afandina Car Rental Mobile Advertisement'" />
+                </ng-container>
+            </section>
+        </div>
+
+    </section>
+
+    <section class="why_us py-4" *ngIf="whyChooseUsSection">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="head">
+                        <h2>{{whyChooseUsSection.why_choose_us_title}}</h2>
+                        <p class="mb-3" [innerHTML]="whyChooseUsSection.why_choose_us_section_paragraph">
+                        </p>
+                        <a [routerLink]="['/', currentLang, 'about-us']" class="View_All m-0" title="view all">{{
+                            translations['view_all'] }}</a>
+
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row" style="max-width: 800px; margin: auto;">
+                        <div class="col-sm-6" *ngFor="let data of whyChooseUsSection.services">
+                            <div class="card p-2 mb-2">
+                                <div class="head m-0 mb-2 d-flex align-items-center">
+                                    <img src="../../../assets/images/icon/icon.svg" 
+                                         width="35px" height="35px" 
+                                         [alt]="data.name + ' icon'"
+                                         [title]="data.name" loading="lazy"/>
+                                    <h3 class="m-0 mx-2">{{data.name}}</h3>
+                                </div>
+                                <div class="body">
+
+                                    <p>
+                                        {{data.description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- FAQ Content Section -->
+                <div class="col-md-6">
+                    <div class="faq-content-wrapper">
+                        <div class="head">
+                            <h2 class="mb-3 title-placeholder">
+                                {{ faqsSection?.section_title || 'FAQ Section' }}
+                            </h2>
+                            <p class="mb-3 description-placeholder">
+                                {{ faqsSection?.section_description || 'Get the best deals and special offers on your favorite cars.' }}
+                            </p>
+                            <a [routerLink]="['/', currentLang, 'about-us']" 
+                               class="View_All" [title]="translations['view_all'] || 'View All'"
+                               [attr.aria-label]="translations['view_all']">
+                                {{ translations['view_all'] || 'View All' }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- FAQ Accordion Section -->
+                <div class="col-md-6">
+                    <div class="accordion-wrapper">
+                        <p-accordion [activeIndex]="0" [multiple]="false">
+                            <ng-container *ngIf="faqsSection?.faqs; else loadingState">
+                                <p-accordionTab *ngFor="let faq of faqsSection.faqs; let i = index" 
+                                                [header]="faq.question"
+                                                [selected]="i === 0"
+                                                [transitionOptions]="'0.3s cubic-bezier(0.4, 0.0, 0.2, 1)'">
+                                    <div class="faq-answer" [innerHTML]="faq.answer"></div>
+                                </p-accordionTab>
+                            </ng-container>
+    
+                            <!-- Skeleton Loader -->
+                            <ng-template #loadingState>
+                                <div class="accordion-skeleton">
+                                    <div class="skeleton-item" *ngFor="let i of [1, 2, 3]"></div>
+                                </div>
+                            </ng-template>
+                        </p-accordion>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="where_find_us py-4">
+        <div class="container-fluid">
+            <div class="head text-center w-75 m-auto mb-5">
+                <h2 class="mb-3">
+                    {{where_find_us?.where_find_us_section_title}}
+                </h2>
+                <p>
+                    {{where_find_us?.where_find_us_section_paragraph}}
+                </p>
+            </div>
+            <div class="web_map">
+
+                <img src="../../../assets/images/delete/Group_36.svg" class="d-block m-auto" width="80%" height="500px" 
+                    alt="Afandina Car Rental Locations Map" 
+                    title="Find Afandina Car Rental Locations" 
+                    style="max-width: 100%; object-fit: contain;" loading="lazy"
+                    usemap="#image-map" />
+                <map name="image-map">
+                <area target="_blank" [alt]="where_find_us?.locations[0]?.name" [title]="where_find_us?.locations[0]?.name" 
+                    [coords]="where_find_us?.locations[0]?.coords" shape="circle" [routerLink]="['/', currentLang, 'contact']">
+
+                <area target="_blank" [alt]="where_find_us?.locations[1]?.name" [title]="where_find_us?.locations[1]?.name"
+                [coords]="where_find_us?.locations[1]?.coords" shape="circle" [routerLink]="['/', currentLang, 'contact']">
+                <area target="_blank" [alt]="where_find_us?.locations[2]?.name" [title]="where_find_us?.locations[2]?.name"
+                [coords]="where_find_us?.locations[2]?.coords" shape="poly" [routerLink]="['/', currentLang, 'contact']">
+                </map>
+            </div>
+            <div class="mobile_map">
+
+                <img src="../../../assets/images/delete/Group_36_resized.webp" width="50%" height="150px" 
+                    alt="Afandina Car Rental Mobile Locations Map" 
+                    title="Find Afandina Car Rental Locations" 
+                    class="d-block m-auto" style="max-width: 100%;" loading="lazy"
+                    usemap="#image-map" />
+                <!-- <map name="image-map">
+                    <area target="_blank" [alt]="where_find_us?.locations[0]?.name" [title]="where_find_us?.locations[0]?.name" 
+                        [coords]="where_find_us?.locations[0]?.coords" shape="circle" [routerLink]="['/', currentLang, 'contact']">
+
+                    <area target="_blank" [alt]="where_find_us?.locations[1]?.name" [title]="where_find_us?.locations[1]?.name"
+                        [coords]="where_find_us?.locations[1]?.coords" shape="circle" [routerLink]="['/', currentLang, 'contact']">
+                    <area target="_blank" [alt]="where_find_us?.locations[2]?.name" [title]="where_find_us?.locations[2]?.name"
+                        [coords]="where_find_us?.locations[2]?.coords" shape="poly" [routerLink]="['/', currentLang, 'contact']">
+                </map> -->
+            </div>
+        </div>
+    </section>
+
+
+    <section class="instgram py-4">
+        <div class="container-fluid">
+            <div class="head">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h2>
+                        {{ translations['instagram_videos'] }}
+                    </h2>
+                    <div class="buttons">
+                        <button class="custom-prev-arrow" (click)="instagramSections.swiperRef.slidePrev()" [attr.aria-label]="translations['previous']">
+                            <i class="fa-solid "
+                                [ngClass]="{ 'fa-chevron-right': this.currentLang === 'ar', 'fa-chevron-left': this.currentLang !== 'ar' }"></i>
+                        </button>
+                        <button class="custom-next-arrow" (click)="instagramSections.swiperRef.slideNext()" [attr.aria-label]="translations['next']">
+                            <i class="fa-solid "
+                                [ngClass]="{ 'fa-chevron-left': this.currentLang === 'ar', 'fa-chevron-right': this.currentLang !== 'ar' }"></i>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="body">
+                <swiper   class="mx-2" [slidesPerView]="4.5" [spaceBetween]="10" #instagramSections
+                    [navigation]="false"  [breakpoints]="swiperCard.breakpoints"
+                    class="mySwiper">
+                    <ng-template swiperSlide *ngFor="let videoItem of instagramSection?.short_videos">
+                        <div class="video-container">
+                            <video #videoPlayer muted playsinline
+                                [src]="'https://admin.afandinacarrental.com/storage/' + videoItem.image"
+                                class="custom-video" loading="lazy" width="100%" height="100%"></video>
+                            <button class="play-pause-btn" 
+                                    [attr.aria-label]="isPlaying[videoItem.id] ? translations['pause_video'] : translations['play_video']"
+                                    [title]="isPlaying[videoItem.id] ? translations['pause_video'] : translations['play_video']"
+                                    (click)="togglePlayPause(videoPlayer, videoItem)">
+                                <i [class]="isPlaying[videoItem.id] ? 'fas fa-pause' : 'fas fa-play'" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </ng-template>
+                </swiper>
+
+            </div>
+        </div>
+    </section>
+    <section *ngIf="advertisements">
+        <div class="container-fluid">
+            <section class="banner" *ngFor="let ad of advertisements.advertisements">
+                <ng-container *ngIf="ad.position_key == 'home_third'">
+                    <img [src]="'https://admin.afandinacarrental.com/storage/' + ad.web_image"
+                        class="d-none d-lg-block py-3" width="100%" height="100%" loading="lazy" 
+                        [alt]="ad.title || 'Afandina Car Rental Advertisement'" 
+                        [title]="ad.title || 'Afandina Car Rental Advertisement'">
+                    <img [src]="'https://admin.afandinacarrental.com/storage/' + ad.mobile_image"
+                        class="d-block d-lg-none"  width="100%" height="100%" loading="lazy" 
+                        [alt]="ad.title || 'Afandina Car Rental Mobile Advertisement'" 
+                        [title]="ad.title || 'Afandina Car Rental Mobile Advertisement'" />
+                </ng-container>
+            </section>
+        </div>
+
+    </section>
+
+    <section class="car_only py-4" *ngIf="blogs">
+        <div class="container-fluid">
+            <div class="head">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h2>{{blogs.section_title}}</h2>
+                    <div class="buttons">
+                        <button class="custom-prev-arrow" (click)="blogCard.swiperRef.slidePrev()" [attr.aria-label]="translations['previous']">
+                            <i class="fa-solid "
+                                [ngClass]="{ 'fa-chevron-right': this.currentLang === 'ar', 'fa-chevron-left': this.currentLang !== 'ar' }"></i>
+                        </button>
+                        <button class="custom-next-arrow" (click)="blogCard.swiperRef.slideNext()" [attr.aria-label]="translations['next']">
+                            <i class="fa-solid "
+                                [ngClass]="{ 'fa-chevron-left': this.currentLang === 'ar', 'fa-chevron-right': this.currentLang !== 'ar' }"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <swiper  class="mx-2" #blogCard [slidesPerView]="4" [spaceBetween]="10" [navigation]="false"
+                 [breakpoints]="swiperBlog.breakpoints" class="mySwiper">
+                <ng-template swiperSlide *ngFor="let blog of blogs.blogs">
+                    <app-card-blog [blogData]="blog"></app-card-blog>
+                </ng-template>
+            </swiper>
+
+            <a [routerLink]="['/', currentLang, 'blogs']" class="View_All read_more" [title]="translations['view_all']">{{ translations['view_all'] }}</a>
+
+        </div>
+    </section>
+
+</main>

@@ -1,0 +1,44 @@
+nav{
+    padding: 10px 0;
+    background: #171717;
+    ul {
+        margin: 0;
+        padding: 0;
+            li{
+            list-style: none;
+            display: inline-block;
+            margin: 0 10px;
+
+            a{
+                color: #E2C38D;
+                margin: 0 10px;
+                text-decoration: none;
+            }
+            i{
+                font-size: 16px;
+                color: #E2C38D;
+            }
+        }
+    }
+    
+}
+.absolute-position   ul   li   a, .absolute-position   button {
+  color: #E2C38D !important;
+}
+.dropdown-menu {
+  width: fit-content;
+  a{
+      cursor: pointer;
+  }
+}
+@media only screen and (max-width: 1199px) { 
+  nav{
+    display: none !important;
+  }
+  nav   ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}

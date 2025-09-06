@@ -1,0 +1,33 @@
+<p-card [style]="{ width: '100%' }" class="card_blog">
+    <ng-template pTemplate="header">
+        <div class="position-relative blog_img">
+            <img [src]="blogData.image_path" 
+                [alt]="blogData.title || 'Blog Post Image'" 
+                [title]="blogData.title || 'Blog Post Image'" 
+                width="auto" height="auto" 
+                style="object-fit: cover;" 
+                loading="lazy"/>
+        </div>
+    </ng-template>
+    <div class="date">
+        <p>{{blogData.created_at}}</p>
+    </div>
+    <div class="d-flex align-items-center title mb-2">
+        <h3 class="m-0 ellipse one-lines" [title]="blogData.title">{{blogData.title}}</h3>
+    </div>
+    <div class="d-flex align-items-center justify-content-between car_details mb-2" style="height: 30x !important;">
+        <p class="ellipse two-lines" [title]="blogData.description">
+            {{blogData.description}}
+        </p>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <a [routerLink]="['/', currentLang || 'en', 'blogs', blogData.slug]"
+           class="btn_more read_more" 
+           [attr.aria-label]="translations['read_more'] + ' - ' + blogData.title"
+           [title]="translations['read_more'] + ' - ' + blogData.title">
+            {{ translations['read_more'] }}
+            <span class="visually-hidden">- {{ blogData.title }}</span>
+        </a>
+    </ng-template>
+</p-card>

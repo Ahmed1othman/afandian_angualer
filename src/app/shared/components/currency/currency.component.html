@@ -1,0 +1,16 @@
+<div class="dropdown">
+    <button class="bg-transparent border-0 text-uppercase" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-dollar-sign"></i>
+        <span>{{ currentCurrency }}</span>
+    </button>
+    <div class="dropdown-menu" [ngClass]="{
+        'ar': this.currentLang === 'ar',
+        'en': this.currentLang !== 'ar'
+      }" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let currency of currencies" class="w-100 m-0">
+            <a class="dropdown-item w-100 m-0 text-uppercase" (click)="changeCurrency(currency.id , currency.code , currency.name)" [name]="currency.name">
+                {{currency.code | uppercase}}
+            </a>
+        </li>
+    </div>
+</div>

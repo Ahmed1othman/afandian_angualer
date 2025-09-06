@@ -1,0 +1,50 @@
+.why_choose_us,
+.our_Vision,
+.our_mission {
+  .title {
+    h2 {
+      font-size: 30px;
+      font-weight: 600;
+      color: #171717;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 17px;
+      font-weight: 500;
+      color: #404040;
+      line-height: 30px;
+    }
+  }
+}
+
+.why_choose_us
+.content {
+  p {
+    font-size: 17px;
+    font-weight: 500;
+    color: #404040;
+    line-height: 30px;
+  }
+}
+
+.img {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 15px;
+  }
+}
+
+ul {
+  li {
+    margin-bottom: 10px;
+  }
+}
+
+.our_Vision {
+  text-align: center;
+  background: #FBE5C0;
+  border-radius: 15px;
+  padding: 40px 40px;
+}

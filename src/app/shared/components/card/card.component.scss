@@ -1,0 +1,289 @@
+::ng-deep .card_product .p-card {
+    border: 1px solid #D0D0D0;
+    border-radius: 7px;
+    transition: all 0.3s linear;
+    margin: 0;
+    box-shadow: none;
+    overflow: hidden;
+    max-width: 340px !important;
+
+    .p-card-header {
+        width: 100%;
+
+        .img_card {
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            width: 100%;
+            height: 240px;
+            display: block;
+            margin: auto;
+
+            img {
+                width: auto;
+                height: auto;
+                height: 240px !important;
+                max-width: 100%;
+                display: block;
+                margin: auto;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .sale {
+                background: #FF1607;
+                color: #fff;
+                border-top-left-radius: 7px;
+                padding: 5px;
+                font-size: 12px;
+                font-weight: 500;
+                z-index: 111;
+            }
+        }
+    }
+
+    .p-card-content {
+        padding: 0;
+    }
+
+    .deposit {
+        background: #171717;
+        color: #fff;
+        border-top-right-radius: 7px;
+        padding: 5px;
+        font-size: 12px;
+        font-weight: 500;
+        z-index: 111;
+    }
+
+    .title {
+        a {
+            text-decoration: none;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #171717;
+            width: fit-content ;
+        }
+
+        span {
+            color: #FFBC03;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+
+    .car_details {
+        span {
+            color: #7b7b7b;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        i {
+            color: #7b7b7b;
+            font-size: 14px;
+        }
+    }
+
+    .price {
+
+        margin-bottom: 10px;
+
+        p {
+            color: #171717;
+            font-size: 16px;
+            font-weight: 600;
+
+            .old_price {
+                color: #C00000;
+                font-size: 12px;
+                font-weight: 400;
+                text-decoration: line-through;
+                padding: 0 5px;
+            }
+
+            span {
+                color: #848484;
+                font-size: 12px;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .message {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 75px;
+
+        p {
+            color: #313131;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+
+    .p-card .p-card-body {
+        padding: 10px 15px !important;
+    }
+
+    .p-card-footer {
+        padding: 0px;
+
+        .whatsapp,
+        .call_us,
+        .share {
+            width: 100%;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            padding: 9px 0;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .whatsapp {
+            background: #00AC40;
+            color: #fff;
+            font-weight: 500;
+            // width: 126px;
+        }
+
+        .call_us {
+            background: #DCB87A;
+            color: #171717;
+            font-weight: 500;
+            // width: 116px;
+
+        }
+
+        .share {
+            background: transparent;
+            color: #FFBC03;
+            border: 2px solid #FFBC03;
+            font-size: 18px;
+            padding: 4px;
+            // width: 43px;
+        }
+    }
+}
+
+.media-container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    video {
+        background: #000;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 1;
+    }
+
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        pointer-events: none;
+    }
+}
+
+::ng-deep {
+    .product-swiper {
+        position: relative;
+
+        .swiper-pagination {
+            bottom: 25px !important;
+            z-index: 10;
+            
+            .swiper-pagination-bullet {
+                width: 8px;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.5);
+                opacity: 1;
+                margin: 0 4px;
+                
+                &-active {
+                    background: #DCB87A;
+                    transform: scale(1.2);
+                    transition: all 0.3s ease;
+                }
+            }
+        }
+    }
+}
+
+::ng-deep .p-card:hover {
+    border: 1px solid #DCB87A;
+    box-shadow: 0px 0px 35px 0px #DCB87A59;
+    // transform: scale(1.1);
+}
+
+@media only screen and (max-width: 1199px) {
+    ::ng-deep .p-card {
+        width: auto;
+    }
+
+    ::ng-deep .p-card .p-card-body {
+        padding: 10px;
+    }
+
+    ::ng-deep .card_product .p-card .car_details span {
+        font-size: 12px;
+    }
+
+    ::ng-deep .card_product .p-card .price p {
+        font-size: 14px;
+    }
+
+    ::ng-deep .card_product .p-card .price p .old_price {
+        font-size: 12px;
+    }
+
+    ::ng-deep .card_product .p-card .message p {
+        font-size: 12px;
+    }
+
+    ::ng-deep .card_product .p-card .p-card-footer .whatsapp,
+    ::ng-deep .card_product .p-card .p-card-footer .call_us,
+    ::ng-deep .card_product .p-card .p-card-footer .share {
+        font-size: 12px;
+    }
+
+    ::ng-deep .card_product .p-card .p-card-footer .share {
+        font-size: 16px;
+    }
+
+    ::ng-deep .card_product .p-card .p-card-footer .row {
+        padding: 0 10px;
+    }
+}
+
+.swiper{
+    margin: 0;
+}
+
+::ng-deep .swiper-pagination-bullet-active {
+    background-color: #DCB87A !important;
+    width: 20px;
+    border-radius: 20px;
+}
+
+::ng-deep .swiper-pagination-bullet {
+    background: #dfdfdf ;
+    opacity: 1;
+}

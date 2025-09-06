@@ -1,0 +1,162 @@
+.head{
+    margin:0 20px 20px 20px;
+
+    h2{
+        font-size: 32px;
+        font-weight: 600;
+        color: #000000;
+    }
+    .buttons{
+        button{
+            background: #DCB87A;
+            border-radius: 5px;
+            margin: 0 5px;
+            border: 0;
+            color: #ffffff;
+            width: 35px;
+            height: 35px;
+            font-size: 12px;
+        }
+        button:hover{
+            background-color: #d4a451;
+        }
+    }
+    p{
+        font-size: 16px;
+        font-weight: 500;
+        color: #000000;
+    }
+}
+.cars_type{
+    .card_cartype {
+        margin:0 10px;
+        padding-top: 50px;
+        transition: all 0.3s linear;
+        cursor: pointer;
+        .bg_img {
+          position: relative;
+          width: 90%;
+          background: rgba(220, 184, 122, 0.21);
+          border-radius: 10px;
+          height: 55px;
+          transition: all 0.3s linear;
+
+          img {
+            position: absolute;
+            transition: all 0.3s linear;
+          }
+        }
+        &:hover img{
+            transform: scale(1.2);
+        }
+        &:hover .bg_img {
+          background: rgba(229, 182, 76, 1);
+          transform: scale(1.2);
+        }
+        &:hover h3,&:hover p {
+            color: #171717;
+        }
+    } 
+}
+
+.cars_brand,
+.cars_type{
+    h3{
+
+        font-size: 16px;
+        font-weight: 500;
+        color: #827464;
+        margin-bottom: 3px;
+    }
+    p{
+        font-size: 14px;
+        font-weight: 400;
+        color: #848484;
+    }
+}
+
+.cars_brand .card{
+    width: 210px;
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+    height: 175px;
+    transition: all 0.3s linear;
+    max-width: 97%;
+    &:hover{
+        background: #E2C38D;
+    }
+    &:hover h3,&:hover p {
+        color: #171717;
+    }
+    img{
+        width: auto;
+        height: auto;
+        max-width: 100px;
+        max-height: 75px;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+
+    .head{
+        margin:0 10px 10px 10px;
+    
+        h2{
+            font-size: 22px;
+        }
+        .buttons{
+            button{
+                width: 25px;
+                height: 25px;
+            }
+        }
+        p{
+            font-size: 12px;
+        }
+    }
+
+    .cars_brand   .card {
+        width: 210px;
+        border-radius: 10px;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+        height: 100px;
+        transition: all 0.3s linear;
+        max-width: 97%;
+        div{
+            height: 45px!important;
+            display: block!important;
+        }
+    }
+    .cars_brand   .card   img {
+        width: auto;
+        height: auto;
+        max-width: 70%;
+        max-height: 40px;
+    }
+    .cars_brand  h3, .cars_type  h3{
+        font-size: 12px;
+        font-weight: 500;
+        color: #827464;
+        margin-bottom: 3px;
+    }
+    .cars_type   .card_cartype   .bg_img   img {
+        position: absolute;
+        transition: all 0.3s linear;
+        width: 100%;
+    }
+
+    .cars_type   .card_cartype {
+        margin: 0 0px;
+        padding-top: 40px;
+        transition: all 0.3s linear;
+        cursor: pointer;
+    }
+    .cars_type   .card_cartype   .bg_img {
+        height: 35px;
+    }
+}

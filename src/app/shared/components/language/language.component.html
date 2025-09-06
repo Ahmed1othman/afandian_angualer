@@ -1,0 +1,17 @@
+<div class="dropdown">
+    <button class="bg-transparent border-0 " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-globe"></i>
+        <span>{{ currentLang }}</span>
+    </button>
+    <div class="dropdown-menu" [ngClass]="{
+        'rtl': this.currentLang === 'ar',
+        'ltr': this.currentLang !== 'ar'
+      }" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let lang of languages" class="w-100 m-0 ">
+            <a class="dropdown-item w-100 m-0" [href]="getLanguageUrl(lang.code)"
+                title="{{ lang.name }}">
+                {{ lang.name }}
+            </a>
+        </li>
+    </div>
+</div>

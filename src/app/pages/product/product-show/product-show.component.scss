@@ -1,0 +1,209 @@
+.product_show {
+    margin: 20px;
+
+    ::ng-deep .p-card {
+        max-width: 100% !important;
+
+    }
+
+    ::ng-deep .p-card {
+        max-width: 100% !important;
+    }
+    ::ng-deep .p-card:hover{
+        border: 1px solid #D0D0D0;
+    }
+}
+
+
+.card_details {
+    max-width: 100%;
+    width: 600px;
+    display: block;
+    margin: auto;
+
+    ::ng-deep card_details{
+        min-height: 510px;
+    }
+
+    h2 {
+        font-size: 16px;
+        color: #171717;
+        font-weight: 500;
+        text-transform: capitalize;
+
+    }
+
+    h3 {
+        font-size: 22px;
+        color: #000000;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+
+    }
+
+}
+
+.carOverview {
+    h2 {
+        text-transform: capitalize;
+    }
+
+    .carOverviewCard {
+        border: 1px solid #F0F0F0;
+        text-transform: capitalize;
+        display: block;
+        text-align: center;
+        min-height: 80px;
+        width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 5px;
+        margin: 5px;
+
+        p {
+            font-size: 14px;
+            color: #7B7B7B;
+            font-weight: 500;
+            
+            a.car-detail-link {
+                color: #007bff;
+                text-decoration: none;
+                transition: color 0.2s ease;
+                
+                &:hover {
+                    color: #0056b3;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        h4,
+        i {
+            font-size: 16px;
+            color: #171717;
+            font-weight: 600;
+        }
+
+        span {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+    }
+}
+
+.product_details .carOverview {
+
+    .carOverviewCard {
+        width: 150px;
+        height: 90px;
+        max-width: 100%;
+    }
+}
+
+.product_details{
+    border: 1px solid #D0D0D0;
+    border-radius: 6px;
+    ::ng-deep .p-galleria .p-galleria-thumbnail-container {
+        padding: 10px 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        // background: #DCB87A;
+        background: transparent;
+
+    }
+    
+    ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-prev,
+    ::ng-deep .p-galleria .p-galleria-thumbnail-container .p-galleria-thumbnail-next {
+        display: none;
+    }
+    
+    ::ng-deep .p-galleria-thumbnail-item {
+        justify-content: space-between !important;
+        margin: 0 10px !important;
+        flex: none !important;
+    }
+    
+    ::ng-deep .p-galleria-item {
+        border-top-left-radius: 7px;
+        // background: #DCB87A;
+        background: transparent;
+        padding: 10px 10px 0 10px;
+        border-top-right-radius: 7px;
+    }
+    ::ng-deep p-image,::ng-deep .p-image-preview-container {
+        width: 100% !important;
+      }
+    ::ng-deep .p-galleria-item img {
+        width: 100%;
+        border-radius: 7px;
+        height: 513px;
+        display: block;
+        object-fit: cover;
+    
+    }
+    ::ng-deep .p-galleria .p-galleria-item-nav{
+        z-index: 11 !important;
+    }
+    ::ng-deep  .p-galleria-thumbnail-wrapper{
+        direction: ltr !important;
+    }
+
+
+    
+}
+
+@media only screen and (max-width: 1199px) {
+    .product_show{margin: 0;}
+    .product_details{
+
+        
+
+        ::ng-deep .p-galleria .p-galleria-item-nav .p-icon-wrapper .p-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        ::ng-deep .p-galleria-item {
+            padding: 10px 10px 0 10px;
+        }
+
+        ::ng-deep .p-galleria .p-galleria-thumbnail-container {
+            padding: 10px 0;
+        }
+
+        ::ng-deep .p-galleria-thumbnail-item {
+            margin: 0 10px !important;
+        }
+    }
+
+    .order_description {
+        order: 2;
+    }
+
+    .order_carOverview {
+        order: 1;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .product_image {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    ::ng-deep .p-galleria-item img {
+        height: 200px !important;
+    }
+}
+
+::ng-deep .p-image-preview-indicator{
+    display: none;
+}

@@ -1,0 +1,25 @@
+.head_banner{
+    background-image: url('../../../../assets/images/delete/banner1.webp');
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    span{
+        font-size: 14px;
+        color: #DCB87A;
+        font-weight: 500;
+    }
+    h1{
+        font-size: 34px;
+        color: #fff;
+        font-weight: 500;
+    }
+    p{
+        font-size: 18px;
+        color: #D0D0D0;
+        font-weight: 500;
+    }
+}

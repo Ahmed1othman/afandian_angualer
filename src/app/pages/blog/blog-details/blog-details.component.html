@@ -1,0 +1,62 @@
+<section class="blog_details p-3 pt-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 ">
+                <h1 class="mb-3">{{blog_details?.data?.title}}</h1>
+                <div class="d-flex align-items-center justify-content-between px-2 mb-2">
+                    <p>By <span>Afandi Car Rental</span></p>
+                    <span>{{blog_details?.data?.created_at}}</span>
+                </div>
+                <img [src]="'https://admin.afandinacarrental.com/storage/' + blog_details?.data?.image" 
+                    class="w-100" 
+                    style="max-height: 543px;border-radius: 10px; object-fit: cover;" 
+                    loading="lazy"
+                    [alt]="blog_details?.data?.title || 'Blog Post Image'"
+                    [title]="blog_details?.data?.title || 'Blog Post Image'">
+                <div class="contnet pt-3 rich-text-content" [innerHTML]="blog_details?.data?.content">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="related_cars">
+                    <div class="related_cars_content">
+                        <div class="related_cars_head px-2 mt-5 mb-2">
+                            <h2>{{ translations['related_cars'] }}</h2>
+                        </div>
+                        <div class="row" *ngIf="hasRelatedCars">
+                            <div class="col-md-12 col-sm-6 mb-3" *ngFor="let car of blog_details?.data?.related_cars">
+                                <app-card [carData]="car"></app-card>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="!hasRelatedCars">
+                            <div class="col-12">
+                                <div class="no-related-cars text-center py-4">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fa-solid fa-car-side" style="font-size: 48px; color: #DCB87A;"></i>
+                                    </div>
+                                    <h3 class="text-muted mb-2">{{ translations['no_related_cars'] }}</h3>
+                                    <p class="text-muted mb-3">{{ translations['explore_our_cars'] }}</p>
+                                    <a [routerLink]="['/', currentLang, 'cars']" class="btn_more">
+                                        {{ translations['browse_cars'] }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line mt-3"></div>
+    </div>
+</section>
+<section class="related_blogs p-3" *ngIf="blog_details?.data?.related_blogs">
+    <div class="container-fluid">
+        <div class="related_blogs_head px-3 mb-3">
+            <h2>{{ translations['related_blogs'] }} </h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3" *ngFor="let blog of blog_details?.data?.related_blogs">
+                <app-card-blog [blogData]="blog"></app-card-blog>
+            </div>
+        </div> 
+    </div>
+</section>

@@ -1,0 +1,196 @@
+.contact_us_head{
+    text-align: center;
+    max-width: 700px;
+    margin: auto;
+    wid
+    h1{
+        font-size: 36px;
+        font-weight: 700;
+        color: #171717;
+    }
+    p{
+        font-size: 18px;
+        font-weight: 500;
+        color: #848484;
+    }
+}
+
+.form{
+    background-color: #1C1B1A;
+    border-radius: 15px;
+    padding: 30px 40px;
+    max-width: 555px;
+    h2{
+        color: #DCB87A;
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+    label{
+        color: #D0D0D0;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    input,
+    textarea {
+        &::placeholder {
+            color: #999;
+            font-size: 14px;
+            font-style: italic;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        &:focus::placeholder {
+            opacity: 0.5;
+        }
+
+        &.form-control {
+            &:focus {
+                border-color: #078179;
+                box-shadow: 0 0 0 0.2rem rgba(7, 129, 121, 0.25);
+            }
+        }
+    }
+    input{
+        color: #A0A0A0;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    input::placeholder{
+        font-size: 12px;
+
+    }
+    button{
+        background: #DCB87A;
+        color: #fff;
+        font-size: 16px;
+        border: 1px solid rgba(220, 184, 122, 0.69);
+        padding: 10px 30px;
+        border-radius: 7px;
+    }
+}
+
+.contact_details{
+    h2{
+        color: #171717;
+        font-size: 26px;
+        font-weight: 700;
+    }
+    p{
+        color: #848484;
+        font-size: 16px;
+        font-weight: 500;
+        width: 75%;
+        margin-bottom: 20px;
+    }
+    ul{
+        padding: 0;
+        display: flex;
+        align-items: center;
+        li{
+            list-style: none;
+            display: inline-block;
+            margin: 0 10px;
+            span{
+                color: #171717;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    } 
+    .line{
+        width: 100%;
+        height: 1px;
+        background: #DCB87A8F; 
+        margin-bottom: 10px;
+    }
+    h3{
+        color: #171717;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    i{
+        color: #171717;
+        font-size: 16px;
+        font-weight: 700;
+
+    }
+}
+
+.faq {
+    // background-color: black;
+    // background-image: url('/assets/images/icon/bg-faq.webp');
+    background-size: cover;
+    background-position: center;
+    min-height: 300px; 
+    width: 100%;
+    contain: layout paint; 
+    
+    .content {
+        min-height: 200px;
+        width: 100%;
+    }
+    
+    .head {
+        h2 {
+            content-visibility: auto;
+            contain-intrinsic-size: 0 50px;
+        }
+    }
+    
+    .p-accordion {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 500px;
+    }
+}
+
+::ng-deep .p-accordion{
+    .p-accordion-tab{
+        background: transparent;
+        border-radius: 0;
+        border: 0;
+        border-bottom: 1px solid #D0D0D0;
+        .p-accordion-header .p-accordion-header-link{
+            background: transparent;
+            border: 0;
+            text-decoration: none;
+            color:#171717;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .p-accordion-content {
+        border: 0px;
+        background: transparent;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+    .p-accordion-header .p-accordion-header-link,
+    .p-accordion-content {
+        padding: 15px;
+    }
+    .p-accordion-toggle-icon {
+        order: 2;
+    }
+
+    .p-accordion-header-text{
+        order: 1;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .p-accordion-content{
+        font-size: 16px;
+        font-weight: 400;
+        color: #191919;
+    }
+    .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link{
+        // color: #DCB87A !important;
+    }
+}
+@media only screen and (max-width: 500px) {
+
+.contact_us_body .px-5{
+    padding: 0 !important;
+}
+}

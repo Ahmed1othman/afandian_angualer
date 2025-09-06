@@ -1,0 +1,40 @@
+button {
+    display: flex;
+    align-items: center;
+
+    i {
+        font-size: 16px;
+        color: #E2C38D;
+    }
+
+    span {
+        color: #E2C38D;
+        margin: 0 5px;
+    }
+}
+
+
+.dropdown-menu {
+    width: fit-content;
+    left: -452%;
+    right: 0 !important;
+
+    a {
+        cursor: pointer;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .ar {
+        left: 0 !important;
+        right: auto !important;
+        text-align: right;
+    }
+
+    .en {
+        right: 0 !important;
+        left: auto !important;
+        text-align: left;
+    }
+}

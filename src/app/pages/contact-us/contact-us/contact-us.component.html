@@ -1,0 +1,238 @@
+<section class="contact_us px-3" *ngIf="contactUsData">
+    <div class="contact_us_head py-5 mb-3">
+        <h1>{{contactUsData.data.contact_us_title}}</h1>
+        <p>{{contactUsData.data.contact_us_paragraph}}</p>
+    </div>
+    <section class="contact_us_body">
+        <div class="container-fluid">
+            <div class="row px-5 align-items-center ">
+                <div class="col-md-5 mb-3">
+                    <form [formGroup]='contactusForm' class="form">
+                        <div class="row">
+                          <!-- Full Name -->
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label for="full_name" class="form-label">{{ translations['full_name'] }}</label>
+                              <input type="text" class="form-control" id="full_name" formControlName="full_name" 
+                                     [placeholder]="translations['enter_your_full_name'] || 'Enter your full name'">
+                              <div *ngIf="message">
+                                <div class="text-danger" *ngFor="let msg_error of message" >
+                                    <span>{{msg_error.full_name}}</span>
+                                </div>
+                            </div>
+                            </div>
+                          </div>
+                      
+
+                          <!-- Email -->
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label for="email" class="form-label">{{ translations['email'] }}</label>
+                              <input type="email" class="form-control" id="email" formControlName="email" 
+                                     [placeholder]="translations['enter_your_email'] || 'Enter your email address'">
+                              <div *ngIf="message">
+                                <div class="text-danger" *ngFor="let msg_error of message" >
+                                    <span>{{msg_error.email}}</span>
+                                </div>
+                            </div>
+                            </div>
+                          </div>
+                      
+
+                          <!-- Phone Number -->
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label for="phone" class="form-label">{{ translations['phone_number'] }}</label>
+                              <input type="text" class="form-control" id="phone" formControlName="phone"
+                                     [placeholder]="translations['enter_your_phone'] || 'Enter your phone number'">
+                                <div *ngIf="message">
+                                  <div class="text-danger" *ngFor="let msg_error of message" >
+                                      <span>{{msg_error.phone}}</span>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+
+                          <!-- Company Name -->
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label for="subject" class="form-label">{{ translations['subject'] }}</label>
+                              <input type="text" class="form-control" id="subject" formControlName="subject"
+                                     [placeholder]="translations['enter_subject'] || 'Enter message subject'">
+                                <div *ngIf="message">
+                                  <div class="text-danger" *ngFor="let msg_error of message" >
+                                      <span>{{msg_error.subject}}</span>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      
+
+                        <!-- Message -->
+                        <div class="mb-3">
+                          <label for="message" class="form-label">{{ translations['message'] }}</label>
+                          <textarea class="form-control" id="message" formControlName="message" rows="7"
+                                   [placeholder]="translations['enter_your_message'] || 'Enter your message here'"></textarea>
+                           <div *ngIf="message">
+                            <div class="text-danger" *ngFor="let msg_error of message" >
+                                <span>{{msg_error.message}}</span>
+                            </div>
+                        </div>
+                        </div>
+                      
+
+                      
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn_button w-100" (click)="onSubmit()" [disabled]="contactusForm.invalid || isLoading">
+                          <ng-container *ngIf="isLoading">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                          </ng-container>
+                          <ng-container *ngIf="!isLoading">
+                            {{ translations['submit'] }}
+                          </ng-container>
+                        </button>
+                        
+                    
+                    
+                        <!-- Success Message -->
+                        <div *ngIf="message" class="text-success mt-3 text-center " style="color: #078179;font-weight: 600;">
+                          {{ message }}
+                        </div>
+                      
+
+                      </form>
+                </div>
+                <div class="col-md-7">
+                    <div class="contact_details">
+                        <h2>{{contactUsData.data.contact_us_detail_title}}</h2>
+                        <p>{{contactUsData.data.contact_us_detail_paragraph}}</p>
+                        <div class="content" *ngIf="contactUsData.data.contact_data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li class="m-0">
+                                            <img src="../../../../assets/images/icon/location.svg" width="40px" loading="lazy" />
+                                        </li>
+                                        <li>
+                                            <span>
+                                              {{contactUsData.data.contact_data.address.address_line2}}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li class="m-0">
+                                            <img src="../../../../assets/images/icon/mail.svg" width="40px" loading="lazy" />
+                                        </li>
+                                        <li>
+                                            <span>{{contactUsData.data.contact_data.email}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li class="m-0">
+                                            <img src="../../../../assets/images/icon/phone.svg" width="40px" loading="lazy" />
+                                        </li>
+                                        <li>
+                                            <span>{{contactUsData.data.contact_data.phone}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li class="m-0">
+                                            <img src="../../../../assets/images/icon/whatsapp.svg" width="40px" loading="lazy" />
+                                        </li>
+                                        <li>
+                                            <span>{{contactUsData.data.contact_data.alternative_phone}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="d-flex align-items-center justify-content-between" *ngIf="contactUsData.data.contact_data.social_media_links">
+                                <div>
+                                    <h3>{{ translations['social_media'] }}</h3>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <a target="_blank" routerLink="{{contactUsData.data.contact_data.social_media_links.facebook}}" title="contactUsData.data.contact_data.social_media_links.facebook">
+                                                <i class="fa-brands fa-facebook-f"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a target="_blank" routerLink="{{contactUsData.data.contact_data.social_media_links.instagram}}" title="contactUsData.data.contact_data.social_media_links.instagram">
+                                                <i class="fa-brands fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a target="_blank" routerLink="{{contactUsData.data.contact_data.social_media_links.twitter}}" title="contactUsData.data.contact_data.social_media_links.twitter">
+                                                <i class="fa-brands fa-x-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a target="_blank" routerLink="{{contactUsData.data.contact_data.social_media_links.snapchat}}" title="contactUsData.data.contact_data.social_media_links.snapchat">
+                                                <i class="fa-brands fa-snapchat"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <section class="map py-5" >
+                <div *ngIf="sanitizedGoogleMapUrl" [innerHTML]="sanitizedGoogleMapUrl"></div>
+            </section>
+            <section class="faq py-5" *ngIf="contactUsData.data.faqs">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 mb-5 ">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="head text-center w-75">
+                                    <h2 class="mb-3" [attr.loading]="'eager'">
+                                        {{contactUsData.data.faq_section_title}}
+                                    </h2>
+                                    <p>
+                                        {{contactUsData.data.faq_section_paragraph}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p-accordion [activeIndex]="0" [multiple]="false" [expandIcon]="'pi pi-chevron-right'"
+                                       [collapseIcon]="'pi pi-chevron-down'">
+                                <p-accordionTab *ngFor="let faq of contactUsData.data.faqs; trackBy: trackByFn" 
+                                              [header]="faq.question"
+                                              [transitionOptions]="'0.2s'">
+                                    <p>
+                                        {{ faq.answer }}
+                                    </p>
+                                </p-accordionTab>
+                            </p-accordion>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="img mb-3">
+                                <img src="../../../../assets/images/delete/about.webp" 
+                                     width="100%" height="340px"
+                                     style="object-fit: cover; border-radius: 10px;" loading="lazy"
+                                     [attr.fetchpriority]="'low'"
+                                     alt="About Us Image"
+                                     title="About Afandina Car Rental" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</section>

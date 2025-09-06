@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://afandinacarrental.com/sitemap.xml
+
+Disallow: /admin/
+Disallow: /wp-admin/
+
+Allow: /assets/
+Allow: /images/
+Allow: /styles/
+Allow: /scripts/
+
+Disallow: /*?*
+Disallow: /*?
+
+Disallow: /private/

@@ -1,0 +1,35 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  opacity: 0;
+  width: 45px;
+  height: 45px;
+  z-index: 1000;
+  background-color: #D3A45F;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s;
+  outline: none;
+  transform: translateY(100px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background-color: #B78E48;
+    transform: scale(1.1) translateY(0);
+  }
+
+  i {
+    font-size: 16px;
+  }
+}
+
+.show-scrollTop {
+  opacity: 1;
+  transform: translateY(0);
+}

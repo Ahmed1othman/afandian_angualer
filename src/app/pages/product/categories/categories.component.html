@@ -1,0 +1,68 @@
+<div>
+    <app-banner-head [title]="categoryDetails.category.section_title??categoryDetails.category.name" [desc]="categoryDetails.category.description"></app-banner-head>
+</div>
+<section class="cars_type py-4 pt-5" *ngIf="categoriesSection">
+    <div class="container-fluid">
+        <div class="head d-flex align-items-center justify-content-between">
+            <h2>{{categoriesSection.section_title}}</h2>
+            <div class="buttons">
+                <button class="custom-prev-arrow" (click)="carsTypeSwiper.swiperRef.slidePrev()">
+                    <i class="fa-solid "
+                        [ngClass]="{ 'fa-chevron-right': this.currentLang === 'ar', 'fa-chevron-left': this.currentLang !== 'ar' }"></i>
+                </button>
+                <button class="custom-next-arrow" (click)="carsTypeSwiper.swiperRef.slideNext()">
+                    <i class="fa-solid "
+                        [ngClass]="{ 'fa-chevron-left': this.currentLang === 'ar', 'fa-chevron-right': this.currentLang !== 'ar' }"></i>
+                </button>
+            </div>
+        </div>
+
+        <swiper class="mx-2" #carsTypeSwiper [slidesPerView]="7" [slidesPerView]="7.5" [spaceBetween]="0"
+            [navigation]="false"  class="mySwiper"
+            [breakpoints]="swiperConfig.breakpoints">
+            <ng-template swiperSlide *ngFor="let category of categoriesSection.categories">
+                <div class="card_cartype text-center" [routerLink]="['/', currentLang,'category' ,category.slug ]">
+                    <div class="bg_img mb-2">
+                        <img [src]="'https://admin.afandinacarrental.com/storage/'+category.image"
+                            class="d-block m-auto position-absolute top-0 start-50 translate-middle" width="150px"
+                            height="auto" alt="{{ category.name }}" />
+                    </div>
+                    <h3>{{category.name}}</h3>
+                    <p>{{category.car_count}}</p>
+                </div>
+            </ng-template>
+        </swiper>
+    </div>
+</section>
+<section class="blog_list pt-4 pb-4 mx-4">
+    <div class="container-fluid">
+        <div class="row" *ngIf="categoryDetails.cars && categoryDetails.cars.length > 0">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-3 p-0" *ngFor="let car of categoryDetails.cars">
+                <app-card [carData]="car"></app-card>
+            </div>
+        </div>
+        <div class="row" *ngIf="!categoryDetails.cars || categoryDetails.cars.length === 0">
+            <div class="col-12 text-center py-5">
+                <div class="no-cars-message">
+                    <i class="fa-solid fa-car-rear mb-3" style="font-size: 48px; color: #ccc;"></i>
+                    <h3 class="text-muted">{{ translations['no_cars'] }}</h3>
+                    <p class="text-muted">{{ translations['check_back_later'] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="article-section py-5" *ngIf="categoryDetails.category.article">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="article-wrapper">
+                    <div class="article-content">
+                        <div class="content-wrapper" [innerHTML]="categoryDetails.category.article"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,167 @@
+<nav class="navbar navbar-expand-xl bg-transparent" [ngClass]="{'absolute-position': isHomePage(), 'relative-position': !isHomePage()}">
+    <div class="container-fluid">
+        <div class="d-none">
+            <a [routerLink]="['/', currentLang,  'brands']" [title]="translations['brands']">{{ translations['brands'] }}</a>
+            <a [routerLink]="['/', currentLang,  'categories']" [title]="translations['categories']">{{ translations['categories'] }}</a>
+            <a [routerLink]="['/', currentLang,  'locations']" [title]="translations['locations']">{{ translations['locations'] }}</a>
+        </div>
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand" [routerLink]="['/', currentLang , 'home']" [title]="translations['home']">
+                <img *ngIf="!isHomePage()" src= {{black_logo}}  width="70px" height="70px"  [alt]="translations['home']" [title]="translations['home']"/>
+                <img *ngIf="isHomePage()" src= {{dark_logo}} width="70px" height="70px" [alt]="translations['home']" [title]="translations['home']"/>
+            </a>
+            <div style="order: 1;">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="language">
+                <app-language></app-language>
+            </div>
+            <div class="language">
+                <app-currency></app-currency>
+            </div>
+        </div>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" #navbarCollapse>
+            <ul class="navbar-nav ml-auto mb-2 mb-xl-0" [ngClass]="{
+                'ar': this.currentLang === 'ar',
+                'en': this.currentLang !== 'ar'
+              }">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" (click)="closeNavbar()" [routerLink]="['/', currentLang , 'home']" [title]="translations['home']">{{ translations['home'] }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" (click)="closeNavbar()" [routerLink]="['/', currentLang, 'all-cars']" [title]="translations['all_cars'] || 'All Cars'">
+                        {{ translations['all_cars'] || 'All Cars' }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [title]="translations['brands']" role="button" aria-haspopup="true" [attr.aria-expanded]="isBrandDropdownVisible">
+                        <div class="brand-dropdown p-0 m-0">
+                            <button class="brand-button bg-transparent dropdown-toggle border-0 text-white p-0 m-0" 
+                                    type="button"
+                                    (click)="toggleDropdown('brand')"
+                                    [title]="translations['brands']">
+                                    {{ translations['brands'] }}
+                            </button>
+                            <div class="brand-menu" [class.show]="isBrandDropdownVisible" role="menu">
+                                <div class="brands">
+                                    <div class="row" >
+                                        <div class="col-xl-3 col-md-4 col-sm-6 col-6" *ngFor="let brand of brandsSection?.brands">
+                                            <a class="d-flex align-items-center p-2 contnet" (click)="closeNavbar()" 
+                                            [routerLink]="['/', currentLang ,'brand' , brand.slug ]"
+                                            [title]="'Browse ' + brand.name + ' cars'">
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <img [src]="'https://admin.afandinacarrental.com/storage/'+brand.image" 
+                                                         class="d-block m-auto"
+                                                         width="30px" height="30px" 
+                                                         [alt]="brand.name"
+                                                         [title]="brand.name" />
+                                                </div>
+                                                <div>
+                                                    <h3 class="mb-0 mx-2 ellipse one-lines">{{brand.name}}</h3>
+                                                    <p class="mt-1 mx-2 ellipse two-lines text-center">{{brand.car_count}}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" [title]="translations['categories']" role="button" aria-haspopup="true" [attr.aria-expanded]="isCategoryDropdownVisible">
+                        <div class="category-dropdown p-0 m-0">
+                            <button class="category-button bg-transparent dropdown-toggle border-0 text-white p-0 m-0" 
+                                    type="button"
+                                    (click)="toggleDropdown('category')"
+                                    [title]="translations['categories']">
+                                    {{ translations['categories'] }}
+                            </button>
+                            <div class="category-menu" [class.show]="isCategoryDropdownVisible" role="menu">
+                                <div class="Categories">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-4 col-sm-6 col-6" *ngFor="let category of categoriesSection?.categories">
+                                            <a class="d-flex align-items-center p-2 contnet" (click)="closeNavbar()" 
+                                            [routerLink]="['/', currentLang ,'category' , category.slug ]"
+                                            [title]="'Browse ' + category.name + ' cars'">
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <img [src]="'https://admin.afandinacarrental.com/storage/'+category.image" 
+                                                         class="d-block m-auto"
+                                                         width="120px" height="60px" 
+                                                         [alt]="category.name"
+                                                         [title]="category.name" />
+                                                </div>
+                                                <div>
+                                                    <h3 class="mb-0 mx-2 ellipse one-lines">{{category.name}}</h3>
+                                                    <p class="mt-1 mx-2 ellipse two-lines text-center">{{category.car_count}}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" [title]="translations['locations']" role="button" aria-haspopup="true" [attr.aria-expanded]="isLocationDropdownVisible">
+                        <div class="category-dropdown p-0 m-0">
+                            <button class="category-button bg-transparent dropdown-toggle border-0 text-white p-0 m-0" 
+                                    type="button"
+                                    (click)="toggleDropdown('location')"
+                                    [title]="translations['locations']">
+                                    {{ translations['locations'] }}
+                            </button>
+                            <div class="category-menu" [class.show]="isLocationDropdownVisible" role="menu">
+                                <div class="Categories">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-4 col-sm-6 col-6" *ngFor="let location of locationSection?.locations">
+                                            <a class="d-flex align-items-center p-2 contnet" (click)="closeNavbar()" 
+                                            [routerLink]="['/', currentLang,'location' , location.slug]"
+                                            [title]="'Browse ' + location.name + ' cars'">
+                                                <div>
+                                                    <h3 class="mb-0 mx-2 ellipse one-lines">{{location.name}}</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" (click)="closeNavbar()" [routerLink]="['/', currentLang, 'about-us']" [title]="translations['about_us']">
+                        {{ translations['about_us'] }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="closeNavbar()" [routerLink]="['/', currentLang, 'blogs']" [title]="translations['blog']">
+                        {{ translations['blog'] }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="closeNavbar()" [routerLink]="['/', currentLang, 'contact-us']" [title]="translations['contact_us']">
+                        {{ translations['contact_us'] }}
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    <div class="search px-2 pb-3">
+        <app-search></app-search>
+    </div>
+</nav>

@@ -1,0 +1,295 @@
+.head{
+    margin:0 20px 20px 20px;
+
+    h2{
+        font-size: 32px;
+        font-weight: 600;
+        color: #000000;
+    }
+    .buttons{
+        button{
+            background: #DCB87A;
+            border-radius: 5px;
+            margin: 0 5px;
+            border: 0;
+            color: #ffffff;
+            width: 35px;
+            height: 35px;
+            font-size: 12px;
+        }
+        button:hover{
+            background-color: #d4a451;
+        }
+    }
+    p{
+        font-size: 16px;
+        font-weight: 500;
+        color: #000000;
+    }
+}
+
+.cars_type{
+    .card_cartype {
+        margin:0 10px;
+        padding-top: 50px;
+        transition: all 0.3s linear;
+        cursor: pointer;
+        .bg_img {
+          position: relative;
+          width: 90%;
+          background: rgba(220, 184, 122, 0.21);
+          border-radius: 10px;
+          height: 55px;
+          transition: all 0.3s linear;
+
+          img {
+            position: absolute;
+            transition: all 0.3s linear;
+          }
+        }
+        &:hover img{
+            transform: scale(1.2);
+        }
+        &:hover .bg_img {
+          background: rgba(229, 182, 76, 1);
+          transform: scale(1.2);
+        }
+        &:hover h3,&:hover p {
+            color: #171717;
+        }
+    } 
+}
+
+.cars_brand,
+.cars_type{
+    h3{
+
+        font-size: 16px;
+        font-weight: 500;
+        color: #827464;
+        margin-bottom: 3px;
+    }
+    p{
+        font-size: 14px;
+        font-weight: 400;
+        color: #848484;
+    }
+}
+
+.cars_brand .card{
+    width: 210px;
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+    height: 175px;
+    transition: all 0.3s linear;
+    max-width: 97%;
+    &:hover{
+        background: #E2C38D;
+    }
+    &:hover h3,&:hover p {
+        color: #171717;
+    }
+    img{
+        width: auto;
+        height: auto;
+        max-width: 100px;
+        max-height: 75px;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+
+    .head{
+        margin:0 10px 10px 10px;
+    
+        h2{
+            font-size: 22px;
+        }
+        .buttons{
+            button{
+                width: 25px;
+                height: 25px;
+            }
+        }
+        p{
+            font-size: 12px;
+        }
+    }
+
+    .cars_brand   .card {
+        width: 210px;
+        border-radius: 10px;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+        height: 100px;
+        transition: all 0.3s linear;
+        max-width: 97%;
+        div{
+            height: 45px!important;
+            display: block!important;
+        }
+    }
+    .cars_brand   .card   img {
+        width: auto;
+        height: auto;
+        max-width: 70%;
+        max-height: 40px;
+    }
+    .cars_brand  h3, .cars_type  h3{
+        font-size: 12px;
+        font-weight: 500;
+        color: #827464;
+        margin-bottom: 3px;
+    }
+    .cars_type   .card_cartype   .bg_img   img {
+        position: absolute;
+        transition: all 0.3s linear;
+        width: 100%;
+    }
+
+    .cars_type   .card_cartype {
+        margin: 0 0px;
+        padding-top: 40px;
+        transition: all 0.3s linear;
+        cursor: pointer;
+    }
+    .cars_type   .card_cartype   .bg_img {
+        height: 35px;
+    }
+}
+
+.article-section {
+    position: relative;
+    background-color: #fff;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+    }
+
+    .article-wrapper {
+        position: relative;
+        padding: 2rem 0;
+    }
+
+    .article-content {
+        line-height: 1.7;
+        color: #2c3e50;
+        font-size: 1.1rem;
+
+        .content-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+
+            ::ng-deep {
+                h1, h2, h3, h4, h5, h6 {
+                    color: #1a1a1a;
+                    margin: 1.5rem 0 1rem;
+                    font-weight: 600;
+                    line-height: 1.3;
+                }
+
+                h1 { font-size: 2.2rem; }
+                h2 { font-size: 1.8rem; }
+                h3 { font-size: 1.5rem; }
+                h4 { font-size: 1.3rem; }
+                h5 { font-size: 1.1rem; }
+                h6 { font-size: 1rem; }
+
+                p {
+                    margin-bottom: 1.5rem;
+                    line-height: 1.8;
+                }
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 12px;
+                    margin: 2rem 0;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                }
+
+                ul, ol {
+                    margin: 1.5rem 0;
+                    padding-left: 2rem;
+
+                    li {
+                        margin-bottom: 0.5rem;
+                    }
+                }
+
+                blockquote {
+                    margin: 2rem 0;
+                    padding: 1rem 2rem;
+                    border-left: 4px solid #3498db;
+                    background-color: #f8f9fa;
+                    font-style: italic;
+                    
+                    p {
+                        margin: 0;
+                    }
+                }
+
+                a {
+                    color: #3498db;
+                    text-decoration: none;
+                    border-bottom: 1px solid transparent;
+                    transition: border-color 0.3s ease;
+
+                    &:hover {
+                        border-bottom-color: #3498db;
+                    }
+                }
+
+                table {
+                    width: 100%;
+                    margin: 2rem 0;
+                    border-collapse: collapse;
+
+                    th, td {
+                        padding: 0.75rem;
+                        border: 1px solid #dee2e6;
+                    }
+
+                    th {
+                        background-color: #f8f9fa;
+                        font-weight: 600;
+                    }
+
+                    tr:nth-child(even) {
+                        background-color: #f8f9fa;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .article-section {
+        .article-content {
+            font-size: 1rem;
+
+            ::ng-deep {
+                h1 { font-size: 1.8rem; }
+                h2 { font-size: 1.5rem; }
+                h3 { font-size: 1.3rem; }
+                h4 { font-size: 1.1rem; }
+                h5, h6 { font-size: 1rem; }
+
+                blockquote {
+                    padding: 1rem;
+                }
+            }
+        }
+    }
+}
